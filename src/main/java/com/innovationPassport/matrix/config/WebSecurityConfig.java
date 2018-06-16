@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         web.ignoring().antMatchers( "/", "/resources/**", "/index.*", "/login.html","/favicon.ico",
                 "/template/**", "/assets", "/assets/**", "/node_modules", "/node_modules/**", "/dist", "/dist/**",
-                "/*.ttf", "/*.woff2", "/dashboard", "/dashboard/**", "/authentication/login",
+                "/*.ttf", "/*.woff2", "/dashboard", "/dashboard/**", "/login",
                 "/authentication/registration");
     }
 
@@ -62,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/authentication/**").permitAll()
-                .antMatchers("/authenticate").permitAll()
+                .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/index").permitAll()
                 .antMatchers("/file/getPostImage").permitAll()
                 .antMatchers("/post/{id}").permitAll()
@@ -74,8 +74,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(accessDeniedHandler)
                 .and()
                 .formLogin()
-                .loginPage("/authentication/login")
-                .loginProcessingUrl("/authenticate")
+                .loginPage("/login")
+                .loginProcessingUrl("/api/authenticate")
                 .successHandler(successHandler)
                 .failureHandler(failureHandler)
                 .usernameParameter("username").passwordParameter("password")
@@ -86,5 +86,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
                 .deleteCookies("JSESSIONID")
                 .permitAll();
+        http.csrf().disable();
     }
 }
