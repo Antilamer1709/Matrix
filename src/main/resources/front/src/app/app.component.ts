@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AppService} from "./app.service";
+import {Message} from "primeng/api";
+import {Router} from "@angular/router";
+import {AuthenticationService} from "./authentication/authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -7,15 +9,14 @@ import {AppService} from "./app.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
 
-  constructor(private appService: AppService) {
+  public msgs: Message[] = [];
+
+  constructor(public authenticationService: AuthenticationService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    this.appService.test().subscribe(res =>  {
-      this.title = res.test;
-    });
   }
 
 }
