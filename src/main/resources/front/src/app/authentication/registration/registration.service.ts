@@ -15,7 +15,7 @@ export class RegistrationService extends CommonService {
   }
 
   register(registration: RegistrationModel): Observable<any> {
-    return this.http.post('/authentication/registration', registration, {headers: this.getHeaders()});
+    return this.http.post('api/authentication/registration', registration, {headers: this.getHeaders()});
   }
 
 }
