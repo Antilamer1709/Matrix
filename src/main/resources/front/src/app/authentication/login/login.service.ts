@@ -18,7 +18,7 @@ export class LoginService extends CommonService {
     urlSearchParams.append('password', login.password);
     let body = urlSearchParams.toString();
 
-    return this.http.post('/api/authenticate', body, {headers: this.getEncodedHeaders()});
+    return this.http.post('api/authenticate', body, {headers: this.getEncodedHeaders()});
   }
 
 }
