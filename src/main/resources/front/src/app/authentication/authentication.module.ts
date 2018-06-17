@@ -6,6 +6,7 @@ import {FormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/primeng";
 import {AngularFontAwesomeModule} from "angular-font-awesome";
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import {AngularFontAwesomeModule} from "angular-font-awesome";
     InputTextModule,
     AngularFontAwesomeModule
   ],
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, RegistrationComponent],
   providers: [LoginService]
 })
 export class AuthenticationModule { }

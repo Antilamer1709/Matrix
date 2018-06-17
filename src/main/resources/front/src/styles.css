@@ -34,3 +34,13 @@
   margin-bottom: 25px;
   margin-left: 100px;
 }
+
+.registrationHeader {
+  margin-left: 110px !important;
+  margin-top: 25px;
+}
+
+.registrationDiv {
+  margin-top: 25px;
+  margin-left: 80px !important;
+}
