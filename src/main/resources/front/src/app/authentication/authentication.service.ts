@@ -17,14 +17,14 @@ export class AuthenticationService extends CommonService {
   }
 
   logout(): Observable<any> {
-    return this.http.get('/logout', {headers: this.getHeaders()});
+    return this.http.get('/api/logout', {headers: this.getHeaders()});
   }
 
   getLoggedUser(): Observable<UserDTO> {
     if (this.loggedUser) {
       return Observable.create(this.loggedUser);
     } else {
-      return this.http.post<UserDTO>('/authentication/loggedUser', {headers: this.getEncodedHeaders()});
+      return this.http.post<UserDTO>('/api/authentication/loggedUser', {headers: this.getEncodedHeaders()});
     }
   }
 

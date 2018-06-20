@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormGroup} from "@angular/forms";
 import {LoginService} from "./login.service";
 import {MessageService} from "primeng/components/common/messageservice";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   private returnUrl: string;
 
   constructor(private messageService: MessageService,
+              private authenticationService: AuthenticationService,
               private service: LoginService,
               private router: Router,
               private route: ActivatedRoute) {
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
         (res) => {
           console.log(res);
           this.messageService.add({severity:'info', summary:'Hello', detail:'You are logged in!'});
+          this.authenticationService.loggedUser = res;
           this.router.navigate([this.returnUrl]);
         },
         error => {

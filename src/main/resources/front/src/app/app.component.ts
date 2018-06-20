@@ -17,6 +17,19 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initLoggedUser();
+  }
+
+  private initLoggedUser(): void {
+    this.authenticationService.getLoggedUser().subscribe(
+      res => {
+        console.log("loggedUser: ");
+        console.log(res);
+      },
+      error => {
+        // this.handleException(error);
+      }
+    );
   }
 
 }
