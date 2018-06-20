@@ -1,6 +1,8 @@
 package com.innovationPassport.matrix.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,6 +37,7 @@ public class UserEntity implements UserDetails {
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @Fetch(FetchMode.SUBSELECT)
     private List<RoleEntity> roles;
 
 
