@@ -36,13 +36,10 @@ export class LoginComponent implements OnInit {
           this.messageService.add({severity:'info', summary:'Hello', detail:'You are logged in!'});
           this.authenticationService.loggedUser = res;
           this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          // this.handleException(error);
         }
       );
     } else {
-      // this.handleFormErrors(form);
+      this.messageService.add({severity:'error', summary:'Error', detail:'Please, fill all fields in correct way!'});
     }
   }
 

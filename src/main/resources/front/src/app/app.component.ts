@@ -25,9 +25,6 @@ export class AppComponent implements OnInit {
       res => {
         console.log("loggedUser: ");
         console.log(res);
-      },
-      error => {
-        // this.handleException(error);
       }
     );
   }

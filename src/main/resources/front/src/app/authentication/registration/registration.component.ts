@@ -30,13 +30,10 @@ export class RegistrationComponent implements OnInit {
         () => {
           this.messageService.add({severity:'info', summary:'Registration', detail:'You can log in now!'});
           this.router.navigate(['/authentication/login']);
-        },
-        error => {
-          // this.handleException(error);
         }
       );
     } else {
-      // this.handleFormErrors(form);
+      this.messageService.add({severity:'error', summary:'Error', detail:'Please, fill all fields in correct way!'});
     }
   }
 
