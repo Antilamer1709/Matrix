@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Data
 @Entity
@@ -29,6 +30,12 @@ public class UserEntity implements UserDetails {
 
     @Column(name = "password")
     private String password;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<RoleEntity> roles;
 
 
     @Override

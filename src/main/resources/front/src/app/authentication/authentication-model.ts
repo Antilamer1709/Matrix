@@ -2,7 +2,9 @@ export class UserDTO {
   id: number;
   username: string;
   password: string;
-  rememberMe: boolean;
+  firstName: string;
+  lastName: string;
+  roles: string[];
 }
 
 export class RegistrationModel {

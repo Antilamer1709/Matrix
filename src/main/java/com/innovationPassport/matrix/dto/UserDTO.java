@@ -3,6 +3,9 @@ package com.innovationPassport.matrix.dto;
 import com.innovationPassport.matrix.model.UserEntity;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class UserDTO {
 
@@ -16,6 +19,8 @@ public class UserDTO {
 
     private String password;
 
+    private List<String> roles;
+
 
     public UserDTO() {
     }
@@ -25,5 +30,6 @@ public class UserDTO {
         this.username = userEntity.getUsername();
         this.firstName = userEntity.getFirstName();
         this.lastName = userEntity.getLastName();
+        this.roles = new ArrayList<>();
     }
 }

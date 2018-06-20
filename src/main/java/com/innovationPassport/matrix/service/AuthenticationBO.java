@@ -28,10 +28,13 @@ public class AuthenticationBO {
         return (UserEntity) authentication.getPrincipal();
     }
 
+    @Transactional
     public UserDTO getLoggedUserDTO() {
         UserEntity user = getLoggedUser();
         if (user != null) {
-            return new UserDTO(user);
+            UserDTO userDTO = new UserDTO(user);
+            user.getRoles().forEach(x -> userDTO.getRoles().add(x.getCode()));
+            return userDTO;
         } else {
             return new UserDTO();
         }
