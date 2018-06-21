@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  height: 100%;
+}
+
 body {
   color: #3e3e44 !important;
   font-family: sans-serif !important;
+  height:100%;
 }
 
 .authenticationDiv {
@@ -73,4 +79,20 @@ body {
 .topicCard:hover {
   background-color: #efeff2;
   cursor: pointer;
+}
+
+.newTopicContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+.topicDiv {
+  width: 500px !important;
+  height: 450px;
+  background-color: #F7F7F9;
+  border-radius: 5%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  padding: 10px;
 }
