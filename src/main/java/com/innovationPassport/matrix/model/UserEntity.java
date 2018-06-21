@@ -43,7 +43,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList("ROLE_USER");
+        return AuthorityUtils.createAuthorityList(this.roles.stream().map(RoleEntity::getCode).toArray(String[]::new));
     }
 
     @Override
