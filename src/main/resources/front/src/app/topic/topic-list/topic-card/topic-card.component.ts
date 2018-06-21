@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TopicDTO} from "../topic-model";
+import {TopicDTO} from "../../topic-model";
 
 @Component({
   selector: 'app-topic-card',

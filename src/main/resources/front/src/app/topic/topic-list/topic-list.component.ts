@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TopicService} from "./topic.service";
-import {TopicDTO} from "./topic-model";
+import {TopicService} from "../topic.service";
+import {TopicDTO} from "../topic-model";
 
 @Component({
   selector: 'app-topic',

@@ -1,5 +1,5 @@
 import {Route} from "@angular/router";
-import {TopicListComponent} from "./topic-list.component";
+import {TopicListComponent} from "./topic-list/topic-list.component";
 
 export const TopicRoutes: Route[] = [
   {
