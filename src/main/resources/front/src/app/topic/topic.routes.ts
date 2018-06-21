@@ -1,8 +1,8 @@
 import {Route} from "@angular/router";
-import {TopicComponent} from "./topic.component";
+import {TopicListComponent} from "./topic-list.component";
 
 export const TopicRoutes: Route[] = [
   {
-    path: 'topic', component: TopicComponent
+    path: 'topic', component: TopicListComponent
   }
 ];

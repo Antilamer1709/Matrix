@@ -4,10 +4,10 @@ import {TopicDTO} from "./topic-model";
 
 @Component({
   selector: 'app-topic',
-  templateUrl: './topic.component.html',
-  styleUrls: ['./topic.component.css']
+  templateUrl: './topic-list.component.html',
+  styleUrls: ['./topic-list.component.css']
 })
-export class TopicComponent implements OnInit {
+export class TopicListComponent implements OnInit {
 
   topics: TopicDTO[];
 
