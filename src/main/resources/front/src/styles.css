@@ -44,3 +44,20 @@
   margin-top: 25px;
   margin-left: 80px !important;
 }
+
+.topicContainer{
+  padding: 30px;
+  text-align:center;
+  margin: auto;
+}
+
+.topicCard{
+  background-color: #F7F7F9;
+  float: left;
+  width: 350px;
+  min-height: 300px;
+
+  padding: 30px;
+  margin:auto auto 30px 30px;
+  text-align:center;
+}

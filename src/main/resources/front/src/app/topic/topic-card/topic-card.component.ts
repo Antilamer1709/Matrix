@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {TopicDTO} from "../topic-model";
 
 @Component({
   selector: 'app-topic-card',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./topic-card.component.css']
 })
 export class TopicCardComponent implements OnInit {
+
+  @Input('topic')
+  topic: TopicDTO;
 
   constructor() { }
 

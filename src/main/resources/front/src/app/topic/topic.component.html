@@ -1,3 +1,7 @@
-<p>
-  topic works!
-</p>
+<div class="topicContainer">
+
+  <div *ngFor="let topic of topics">
+    <app-topic-card [topic]="topic"></app-topic-card>
+  </div>
+
+</div>
