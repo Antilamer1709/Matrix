@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  color: #3e3e44 !important;
+  font-family: sans-serif !important;
+}
 
 .authenticationDiv {
   display: inline-block;
@@ -45,14 +49,14 @@
   margin-left: 80px !important;
 }
 
-.topicContainer{
+.topicContainer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   padding: 30px;
 }
 
-.topicCard{
+.topicCard {
   background-color: #F7F7F9;
   float: left;
   width: 350px;
@@ -60,4 +64,11 @@
 
   padding: 30px;
   margin:30px;
+
+  font-size: 26px;
+  text-align: center;
+}
+
+.topicCard:hover {
+  background-color: #efeff2;
 }
