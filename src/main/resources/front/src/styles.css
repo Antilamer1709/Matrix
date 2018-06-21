@@ -46,9 +46,10 @@
 }
 
 .topicContainer{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 30px;
-  text-align:center;
-  margin: auto;
 }
 
 .topicCard{
@@ -58,6 +59,5 @@
   min-height: 300px;
 
   padding: 30px;
-  margin:auto auto 30px 30px;
-  text-align:center;
+  margin:30px;
 }
