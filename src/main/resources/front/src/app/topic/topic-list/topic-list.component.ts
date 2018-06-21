@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TopicService} from "../topic.service";
 import {TopicDTO} from "../topic-model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-topic',
@@ -11,7 +12,8 @@ export class TopicListComponent implements OnInit {
 
   topics: TopicDTO[];
 
-  constructor(private topicService: TopicService) { }
+  constructor(private topicService: TopicService,
+              private router: Router) { }
 
   ngOnInit() {
     this.initTopics();
@@ -24,7 +26,7 @@ export class TopicListComponent implements OnInit {
   }
 
   public onTopicClick(topic: TopicDTO): void {
-
+    this.router.navigate(['/topic/' + topic.id]);
   }
 
 }
