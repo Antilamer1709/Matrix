@@ -23,4 +23,8 @@ export class TopicComponent implements OnInit {
     });
   }
 
+  public onTopicClick(topic: TopicDTO): void {
+
+  }
+
 }
