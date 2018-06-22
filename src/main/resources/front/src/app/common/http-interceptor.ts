@@ -43,6 +43,8 @@ export class CustomHttpInterceptor implements HttpInterceptor {
           if (ok === 'failed') {
             if (response.status === 401) {
               this.messageService.add({severity: 'error', summary: 'Error', detail: 'Authentication failed!'});
+            } else if (response.status === 403) {
+              this.messageService.add({severity: 'error', summary: 'Error', detail: 'Permission denied!'});
             } else {
               this.messageService.add({severity: 'error', summary: 'Error', detail: 'Something happaned!'});
             }
