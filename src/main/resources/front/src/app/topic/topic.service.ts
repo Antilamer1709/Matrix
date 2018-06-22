@@ -13,4 +13,8 @@ export class TopicService {
   getAllTopics(): Observable<TopicDTO[]> {
     return this.http.get<TopicDTO[]>('/api/topic/getAllTopics');
   }
+
+  createTopic(topic: TopicDTO): Observable<void> {
+    return this.http.post<void>('/api/topic/create', topic);
+  }
 }

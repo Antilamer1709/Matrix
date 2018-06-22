@@ -96,3 +96,18 @@ body {
   padding: 10px;
   text-align: center
 }
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topicNameTextArea {
+  width: 350px;
+  height: 250px;
+}
+
+.ui-float-label > label[class="topicNameLabel"] {
+  top: 10%;
+}

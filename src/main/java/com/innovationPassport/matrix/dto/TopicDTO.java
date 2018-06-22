@@ -11,6 +11,9 @@ public class TopicDTO {
     private String name;
 
 
+    public TopicDTO() {
+    }
+
     public TopicDTO(TopicEntity entity) {
         this.id = entity.getId();
         this.name = entity.getName();
