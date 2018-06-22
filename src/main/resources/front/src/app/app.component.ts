@@ -3,6 +3,7 @@ import {Message} from "primeng/api";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./authentication/authentication.service";
 import {MessageService} from "primeng/components/common/messageservice";
+import {AppService} from "./app.service";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit {
   public msgs: Message[] = [];
 
   constructor(public authenticationService: AuthenticationService,
+              public appService: AppService,
               private messageService: MessageService,
               private router: Router) {
   }

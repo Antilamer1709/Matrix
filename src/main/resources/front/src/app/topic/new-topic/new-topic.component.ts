@@ -3,6 +3,7 @@ import {TopicDTO} from "../topic-model";
 import {FormGroup} from "@angular/forms";
 import {TopicService} from "../topic.service";
 import {MessageService} from "primeng/components/common/messageservice";
+import {AppService} from "../../app.service";
 
 @Component({
   selector: 'app-new-topic',
@@ -14,6 +15,7 @@ export class NewTopicComponent implements OnInit {
   topic: TopicDTO;
 
   constructor(private topicService: TopicService,
+              private appService: AppService,
               private messageService: MessageService) { }
 
   ngOnInit() {
@@ -22,10 +24,14 @@ export class NewTopicComponent implements OnInit {
 
   public createTopic(form: FormGroup): void {
     if (form.valid) {
+      this.appService.blockedUI = true;
       this.topicService.createTopic(this.topic).subscribe(
         (res) => {
           console.log(res);
           this.messageService.add({severity:'info', summary:'Topic', detail:'New topic has been created!'});
+          this.appService.blockedUI = false;
+        }, (err) => {
+          this.appService.blockedUI = false;
         }
       );
     } else {

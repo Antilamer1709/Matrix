@@ -1,17 +1,13 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/internal/Observable";
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  constructor(private http: HttpClient) {
-  }
+  blockedUI: boolean = false;
 
-  test(): Observable<any> {
-    return this.http.get('/api/test');
+  constructor() {
   }
 
 }
