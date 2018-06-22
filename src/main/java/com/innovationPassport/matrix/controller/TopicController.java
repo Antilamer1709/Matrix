@@ -22,7 +22,7 @@ public class TopicController {
         return topicBO.getAllTopics();
     }
 
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_SUPER_ADMIN"})
     @PostMapping(value = "/create")
     @ResponseStatus(value = HttpStatus.OK)
     public void create(@RequestBody TopicDTO topicDTO) {
