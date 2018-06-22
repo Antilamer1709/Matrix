@@ -1,7 +1,9 @@
 <p-growl [(value)]="msgs"></p-growl>
 
 <a [routerLink]="'/login'">login </a>
+<button (click)="logout()">Logout</button>
 <a [routerLink]="'/registration'"> registration </a>
+<a [routerLink]="'/'"> topics </a>
 <a [routerLink]="'/topic/new'"> new topic </a>
 
 <router-outlet></router-outlet>

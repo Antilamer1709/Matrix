@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Message} from "primeng/api";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./authentication/authentication.service";
+import {MessageService} from "primeng/components/common/messageservice";
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
   public msgs: Message[] = [];
 
   constructor(public authenticationService: AuthenticationService,
+              private messageService: MessageService,
               private router: Router) {
   }
 
@@ -25,6 +27,16 @@ export class AppComponent implements OnInit {
       res => {
         console.log("loggedUser: ");
         console.log(res);
+      }
+    );
+  }
+
+  public logout(): void {
+    this.authenticationService.logout().subscribe(
+      () => {
+        this.authenticationService.loggedUser = null;
+        this.messageService.add({severity:'info', summary:'Hello', detail:'You are logged out!'});
+        this.router.navigate(['/']);
       }
     );
   }
