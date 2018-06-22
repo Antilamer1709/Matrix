@@ -2,8 +2,11 @@ package com.innovationPassport.matrix.service;
 
 import com.innovationPassport.matrix.dto.RegistrationDTO;
 import com.innovationPassport.matrix.dto.UserDTO;
+import com.innovationPassport.matrix.enums.UserRole;
 import com.innovationPassport.matrix.exception.ValidationException;
+import com.innovationPassport.matrix.model.RoleEntity;
 import com.innovationPassport.matrix.model.UserEntity;
+import com.innovationPassport.matrix.repository.RoleRepo;
 import com.innovationPassport.matrix.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,11 +15,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+
 @Service
 public class AuthenticationBO {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private RoleRepo roleRepo;
 
     public UserEntity getLoggedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -45,6 +53,7 @@ public class AuthenticationBO {
         validateRegistration(registrationDTO);
         UserEntity user = new UserEntity();
         initUser(user, registrationDTO);
+        addUserRoles(user, UserRole.USER);
         userRepo.save(user);
     }
 
@@ -63,6 +72,17 @@ public class AuthenticationBO {
         user.setLastName(registrationDTO.getLastName());
         user.setUsername(registrationDTO.getUsername());
         user.setPassword(registrationDTO.getPassword()); //TODO implement encoding!
+    }
+
+    private void addUserRoles(UserEntity user, UserRole... userRoles) {
+        if (user.getRoles() == null) {
+            user.setRoles(new ArrayList<>());
+        }
+
+        for (UserRole userRole : userRoles) {
+            RoleEntity roleEntity = roleRepo.findByCode(userRole.getValue());
+            user.getRoles().add(roleEntity);
+        }
     }
 
 }

@@ -22,7 +22,7 @@ public class AuthenticationController {
     }
 
     @PostMapping(value = "/loggedUser")
-    public UserDTO loggedUser() throws Exception {
+    public UserDTO loggedUser() {
         return authenticationBO.getLoggedUserDTO();
     }
 
