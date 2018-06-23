@@ -104,12 +104,17 @@ body {
 }
 
 .topicNameTextArea {
-  width: 285px;
+  width: 320px;
   height: 100px;
 }
 
 .ui-float-label > label[class="topicNameLabel"] {
   top: 10%;
+}
+
+.ui-float-label > label[class="topicHypotheseNameLabel"] {
+  top: -50%;
+  left: 0;
 }
 
 .evidenceTableContainer {
