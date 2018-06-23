@@ -12,4 +12,14 @@ export class CommonService {
     );
   }
 
+  protected getHeaders(): HttpHeaders {
+    return new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Pragma': 'no-cache',
+        'Cache-Control': 'no-cache'
+      }
+    );
+  }
+
 }
