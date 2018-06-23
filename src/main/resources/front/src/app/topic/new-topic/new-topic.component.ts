@@ -40,4 +40,16 @@ export class NewTopicComponent implements OnInit {
     }
   }
 
+  public addHypothese(): void {
+    this.topic.hypotheses.push("");
+  }
+
+  public removeHypothese(index: number): void {
+    if (this.topic.hypotheses.length > 1) {
+      this.topic.hypotheses.splice(index, 1);
+    } else {
+      this.topic.hypotheses = [""];
+    }
+  }
+
 }
