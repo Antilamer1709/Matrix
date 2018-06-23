@@ -5,3 +5,9 @@ export class SearchDTO<T> {
   sortField: string;
   filter: T;
 }
+
+export class ResponseDTO<T> {
+  totalElements: number;
+  totalPages: number;
+  data: T;
+}

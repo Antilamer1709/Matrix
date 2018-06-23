@@ -56,7 +56,6 @@ public class TopicBO {
             throw new ValidationException("There no topic with id: " + id);
         }
         TopicDTO topicDTO = new TopicDTO(topicEntity);
-        topicDTO.setEvidences(topicEntity.getEvidences().stream().map(EvidenceDTO::new).collect(Collectors.toList()));
         topicDTO.setHypotheses(topicEntity.getHypotheses().stream().map(TpoicHypotheseEntity::getHypothese).collect(Collectors.toList()));
 
         return topicDTO;

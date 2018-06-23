@@ -2,6 +2,7 @@ package com.innovationPassport.matrix.controller;
 
 import com.innovationPassport.matrix.dto.EvidenceDTO;
 import com.innovationPassport.matrix.dto.SearchDTO;
+import com.innovationPassport.matrix.dto.response.ResponseDTO;
 import com.innovationPassport.matrix.service.EvidenceBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ public class EvidenceCotroller {
 
 
     @PostMapping(value = "/search")
-    public List<EvidenceDTO> registration(@RequestBody SearchDTO<EvidenceDTO> searchDTO) {
+    public ResponseDTO<List<EvidenceDTO>> registration(@RequestBody SearchDTO<EvidenceDTO> searchDTO) {
         return evidenceBO.search(searchDTO);
     }
 }

@@ -16,6 +16,7 @@ export class TopicComponent implements OnInit {
   loading: boolean;
   totalRecords: number;
   cols: any[];
+  data: EvidenceDTO[];
 
   topicId: number;
   topic: TopicDTO = new TopicDTO();
@@ -67,10 +68,11 @@ export class TopicComponent implements OnInit {
   }
 
   loadEvidences(event: LazyLoadEvent) {
-    this.loading = true;
-    this.loading = false;
+    // this.loading = true;
     this.evidenceService.getEvidences(event).subscribe(x => {
-
+      // this.loading = false;
+      this.totalRecords = x.totalElements;
+      this.data = x.data;
     });
 
   }

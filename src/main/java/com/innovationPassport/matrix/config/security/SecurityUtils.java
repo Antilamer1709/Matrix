@@ -1,7 +1,7 @@
 package com.innovationPassport.matrix.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.innovationPassport.matrix.dto.response.Response;
+import com.innovationPassport.matrix.dto.response.ResponseError;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -24,7 +24,7 @@ final class SecurityUtils {
         response.setContentType("application/json;charset=UTF-8");
         response.setStatus(status);
         PrintWriter writer = response.getWriter();
-        writer.write(mapper.writeValueAsString(new Response(status, message, exception)));
+        writer.write(mapper.writeValueAsString(new ResponseError(status, message, exception)));
         writer.flush();
         writer.close();
     }
