@@ -4,7 +4,6 @@ import {TopicService} from "../topic.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {LazyLoadEvent} from "primeng/api";
 import {EvidenceService} from "./evidence.service";
-import {SearchDTO} from "../../common/common-model";
 
 @Component({
   selector: 'app-topic',
@@ -68,9 +67,11 @@ export class TopicComponent implements OnInit {
   }
 
   loadEvidences(event: LazyLoadEvent) {
-    // this.loading = true;
+    setTimeout(() => {
+      this.loading = true;
+    });
     this.evidenceService.getEvidences(event).subscribe(x => {
-      // this.loading = false;
+      this.loading = false;
       this.totalRecords = x.totalElements;
       this.data = x.data;
     });
