@@ -1,5 +1,6 @@
 package com.innovationPassport.matrix.service;
 
+import com.innovationPassport.matrix.dto.EvidenceDTO;
 import com.innovationPassport.matrix.dto.TopicDTO;
 import com.innovationPassport.matrix.exception.ValidationException;
 import com.innovationPassport.matrix.model.TopicEntity;
@@ -31,11 +32,16 @@ public class TopicBO {
         topicRepo.save(topicEntity);
     }
 
+    @Transactional
     public TopicDTO getTopic(Integer id) throws ValidationException {
         TopicEntity topicEntity = topicRepo.getOne(id);
+
         if (topicEntity == null) {
             throw new ValidationException("There no topic with id: " + id);
         }
-        return new TopicDTO(topicEntity);
+        TopicDTO topicDTO = new TopicDTO(topicEntity);
+        topicDTO.setEvidences(topicEntity.getEvidences().stream().map(EvidenceDTO::new).collect(Collectors.toList()));
+
+        return topicDTO;
     }
 }
