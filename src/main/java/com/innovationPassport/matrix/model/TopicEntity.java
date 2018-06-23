@@ -21,6 +21,10 @@ public class TopicEntity {
     @Fetch(FetchMode.SUBSELECT)
     private List<EvidenceEntity> evidences;
 
+    @OneToMany(mappedBy = "topic", fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<TpoicHypotheseEntity> hypotheses;
+
     @Column(name = "name")
     private String name;
 }

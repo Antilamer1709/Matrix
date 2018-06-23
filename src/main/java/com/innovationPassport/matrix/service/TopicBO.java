@@ -4,7 +4,9 @@ import com.innovationPassport.matrix.dto.EvidenceDTO;
 import com.innovationPassport.matrix.dto.TopicDTO;
 import com.innovationPassport.matrix.exception.ValidationException;
 import com.innovationPassport.matrix.model.TopicEntity;
+import com.innovationPassport.matrix.model.TpoicHypotheseEntity;
 import com.innovationPassport.matrix.repository.TopicRepo;
+import com.innovationPassport.matrix.repository.TpoicHypotheseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,9 @@ public class TopicBO {
     @Autowired
     private TopicRepo topicRepo;
 
+    @Autowired
+    private TpoicHypotheseRepo tpoicHypotheseRepo;
+
 
     public List<TopicDTO> getAllTopics() {
         List<TopicEntity> entities = topicRepo.findAll();
@@ -30,6 +35,17 @@ public class TopicBO {
         topicEntity.setName(topicDTO.getName());
 
         topicRepo.save(topicEntity);
+        createHypotheses(topicDTO, topicEntity);
+    }
+
+    private void createHypotheses(TopicDTO topicDTO, TopicEntity topicEntity) {
+        topicDTO.getHypotheses().forEach(hypothese -> {
+            TpoicHypotheseEntity hypotheseEntity = new TpoicHypotheseEntity();
+            hypotheseEntity.setTopic(topicEntity);
+            hypotheseEntity.setHypothese(hypothese);
+
+            tpoicHypotheseRepo.save(hypotheseEntity);
+        });
     }
 
     @Transactional
@@ -41,6 +57,7 @@ public class TopicBO {
         }
         TopicDTO topicDTO = new TopicDTO(topicEntity);
         topicDTO.setEvidences(topicEntity.getEvidences().stream().map(EvidenceDTO::new).collect(Collectors.toList()));
+        topicDTO.setHypotheses(topicEntity.getHypotheses().stream().map(TpoicHypotheseEntity::getHypothese).collect(Collectors.toList()));
 
         return topicDTO;
     }

@@ -13,6 +13,8 @@ public class TopicDTO {
 
     private String name;
 
+    private List<String> hypotheses;
+
     private List<EvidenceDTO> evidences;
 
 
