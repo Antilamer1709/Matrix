@@ -22,7 +22,7 @@
 
       <div class="row flexCenter">
 
-        <div *ngFor="let hypothese of topic.hypotheses; let i = index">
+        <div *ngFor="let hypothese of topic.hypotheses; trackBy: trackByFn; let i = index">
           <div class="form-group marginBottom25">
 
           <span class="ui-float-label">

@@ -52,4 +52,8 @@ export class NewTopicComponent implements OnInit {
     }
   }
 
+  public trackByFn(item, id){
+    return item
+  }
+
 }
