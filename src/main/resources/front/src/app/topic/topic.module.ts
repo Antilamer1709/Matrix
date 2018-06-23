@@ -7,13 +7,15 @@ import { NewTopicComponent } from './new-topic/new-topic.component';
 import {InputTextareaModule} from "primeng/primeng";
 import {FormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
+import {TableModule} from "primeng/table";
 
 @NgModule({
   imports: [
     CommonModule,
     InputTextareaModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    TableModule
   ],
   declarations: [TopicListComponent, TopicCardComponent, TopicComponent, NewTopicComponent]
 })
