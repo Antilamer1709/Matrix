@@ -33,7 +33,29 @@ export class TopicComponent implements OnInit {
   private initTopic(): void {
     this.topicService.getTopic(this.topicId).subscribe( res => {
       this.topic = res;
+      this.addHypotheseColumns();
     })
+  }
+
+  /**
+   * method that chcecks is column are hypotheses or not. addHypotheseColumns() marks hypotheses columns with indexes from array
+   * @param evidence
+   * @param col
+   * @returns {string}
+   */
+  public getEvidenceValue(evidence, col): string {
+    if (isNaN(Number(col.field))) {
+      return evidence[col.field]
+    } else {
+      return this.topic.hypotheses[col.field];
+    }
+  }
+
+  private addHypotheseColumns(): void {
+    for (let i = 0; i < this.topic.hypotheses.length ; i++) {
+      //for hypothese fields used indexes from topic.hypotheses array
+      this.cols.push({field: i, header: 'Hypothese ' + (i + 1)})
+    }
   }
 
   private initColumns(): void {

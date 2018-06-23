@@ -11,7 +11,7 @@
     <ng-template pTemplate="body" let-evidence>
       <tr>
         <td *ngFor="let col of cols">
-          {{evidence[col.field]}}
+          {{getEvidenceValue(evidence, col)}}
         </td>
       </tr>
     </ng-template>
