@@ -89,9 +89,16 @@ body {
 
 .topicDiv {
   width: 500px !important;
+  background-color: #F7F7F9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  text-align: center
+}
+
+.loginBodyDiv {
+  width: 500px !important;
   height: 450px;
   background-color: #F7F7F9;
-  border-radius: 5%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 10px;
   text-align: center
