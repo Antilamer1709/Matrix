@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {TopicDTO} from "../topic-model";
+import {EvidenceDTO, TopicDTO} from "../topic-model";
 import {TopicService} from "../topic.service";
 import {ActivatedRoute, Params} from "@angular/router";
+import {LazyLoadEvent} from "primeng/api";
+import {EvidenceService} from "./evidence.service";
+import {SearchDTO} from "../../common/common-model";
 
 @Component({
   selector: 'app-topic',
@@ -10,15 +13,20 @@ import {ActivatedRoute, Params} from "@angular/router";
 })
 export class TopicComponent implements OnInit {
 
+  loading: boolean;
+  totalRecords: number;
   cols: any[];
+
   topicId: number;
   topic: TopicDTO = new TopicDTO();
 
   constructor(private topicService: TopicService,
+              private evidenceService: EvidenceService,
               private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.loading = false;
     this.initColumns();
     this.initTopicId();
     this.initTopic();
@@ -56,6 +64,15 @@ export class TopicComponent implements OnInit {
       //for hypothese fields used indexes from topic.hypotheses array
       this.cols.push({field: i, header: 'Hypothese ' + (i + 1)})
     }
+  }
+
+  loadEvidences(event: LazyLoadEvent) {
+    this.loading = true;
+    this.loading = false;
+    this.evidenceService.getEvidences(event).subscribe(x => {
+
+    });
+
   }
 
   private initColumns(): void {

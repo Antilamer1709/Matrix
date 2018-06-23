@@ -1,6 +1,8 @@
 <div class="evidenceTableContainer">
 
-  <p-table [value]="topic.evidences">
+  <p-table [value]="topic.evidences" [lazy]="true" (onLazyLoad)="loadEvidences($event)" [paginator]="true"
+           [rows]="20" [totalRecords]="totalRecords" [loading]="loading">
+
     <ng-template pTemplate="header">
       <tr>
         <th *ngFor="let col of cols">
