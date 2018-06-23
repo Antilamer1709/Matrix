@@ -1,3 +1,20 @@
-<p>
-  topic works!
-</p>
+<div class="evidenceTableContainer">
+
+  <p-table [value]="topic.evidences">
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let col of cols">
+          {{col.header}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-evidence>
+      <tr>
+        <td *ngFor="let col of cols">
+          {{evidence[col.field]}}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>

@@ -111,3 +111,8 @@ body {
 .ui-float-label > label[class="topicNameLabel"] {
   top: 10%;
 }
+
+.evidenceTableContainer {
+  display: flex;
+  margin: 30px;
+}

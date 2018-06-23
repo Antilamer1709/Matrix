@@ -10,14 +10,16 @@ import {ActivatedRoute, Params} from "@angular/router";
 })
 export class TopicComponent implements OnInit {
 
+  cols: any[];
   topicId: number;
-  topic: TopicDTO;
+  topic: TopicDTO = new TopicDTO();
 
   constructor(private topicService: TopicService,
               private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.initColumns();
     this.initTopicId();
     this.initTopic();
   }
@@ -32,6 +34,13 @@ export class TopicComponent implements OnInit {
     this.topicService.getTopic(this.topicId).subscribe( res => {
       this.topic = res;
     })
+  }
+
+  private initColumns(): void {
+    this.cols = [
+      { field: 'evidence', header: 'Evidence' },
+      { field: 'source', header: 'Source' }
+    ];
   }
 
 }
