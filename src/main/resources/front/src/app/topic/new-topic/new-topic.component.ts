@@ -20,6 +20,7 @@ export class NewTopicComponent implements OnInit {
 
   ngOnInit() {
     this.topic = new TopicDTO();
+    this.topic.hypotheses = [""];
   }
 
   public createTopic(form: FormGroup): void {

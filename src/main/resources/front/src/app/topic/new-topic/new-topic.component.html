@@ -11,9 +11,23 @@
 
         <div class="marginBottom25">
           <span class="ui-float-label">
-            <textarea pInputTextarea class="topicNameTextArea" [(ngModel)]="topic.name" id="name" name="name"></textarea>
+            <textarea required pInputTextarea class="topicNameTextArea" [(ngModel)]="topic.name" id="name" name="name"></textarea>
             <label class="topicNameLabel" for="name">Topic name</label>
           </span>
+        </div>
+
+      </div>
+
+      <div class="row flexCenter">
+
+        <div *ngFor="let hypothese of topic.hypotheses; let i = index">
+          <div class="form-group marginBottom25">
+          <span class="ui-float-label">
+            <input [(ngModel)]="topic.hypotheses[i]" [required]="true"
+                   id="username" name="username" type="text" size="30" pInputText>
+            <label for="username">Hypothese {{i + 1}}</label>
+          </span>
+          </div>
         </div>
 
       </div>

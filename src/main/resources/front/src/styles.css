@@ -104,8 +104,8 @@ body {
 }
 
 .topicNameTextArea {
-  width: 350px;
-  height: 250px;
+  width: 285px;
+  height: 100px;
 }
 
 .ui-float-label > label[class="topicNameLabel"] {
