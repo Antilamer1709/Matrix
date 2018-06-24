@@ -6,14 +6,14 @@
     <ng-template pTemplate="header">
       <tr>
         <th *ngFor="let col of cols">
-          {{col.header}}
+          {{getHeaderValue(col)}}
         </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-evidence>
       <tr>
         <td *ngFor="let col of cols">
-          {{getEvidenceValue(evidence, col)}}
+          {{evidence[col.field]}}
         </td>
       </tr>
     </ng-template>

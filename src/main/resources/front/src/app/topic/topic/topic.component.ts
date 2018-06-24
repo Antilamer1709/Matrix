@@ -47,13 +47,12 @@ export class TopicComponent implements OnInit {
 
   /**
    * method that chcecks is column are hypotheses or not. addHypotheseColumns() marks hypotheses columns with indexes from array
-   * @param evidence
    * @param col
    * @returns {string}
    */
-  public getEvidenceValue(evidence, col): string {
+  public getHeaderValue(col): string {
     if (isNaN(Number(col.field))) {
-      return evidence[col.field]
+      return col.header;
     } else {
       return this.topic.hypotheses[col.field];
     }
