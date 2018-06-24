@@ -39,6 +39,10 @@ body {
   margin-bottom: 25px !important;
 }
 
+.marinTop50 {
+  margin-top: 50px;
+}
+
 .submitLogin {
   margin-bottom: 25px;
   margin-left: 100px;
@@ -131,4 +135,50 @@ body {
 
 .hypothesesSpan {
   margin: 0 0 0 5px;
+}
+
+.postHeader {
+  background-color: #F7F7F9;
+  padding: 15px 100px;
+  text-align: center;
+  margin-bottom: 35px;
+  box-shadow: 0 0 1px rgba(0,0,0,0.5);
+}
+
+.postContent {
+  margin-bottom: 50px;
+}
+
+.postCreatorSignature {
+  float: right;
+  margin-bottom: 25px;
+}
+
+.commentBody {
+  margin-bottom: 25px;
+  background-color: #f9f9f9;
+  padding-bottom: 1px;
+}
+
+.commentText {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.commentHeader {
+  background-color: #F7F7F9;
+  padding: 5px 100px;
+  text-align: left;
+  margin-bottom: 10px;
+  box-shadow: 0 0 1px rgba(0,0,0,0.5);
+}
+
+.addComment {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.postSave {
+  text-align: center;
+  margin-top: 25px;
 }

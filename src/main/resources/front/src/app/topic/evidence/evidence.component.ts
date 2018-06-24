@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup} from "@angular/forms";
+import {AuthenticationService} from "../../authentication/authentication.service";
 
 @Component({
   selector: 'app-evidence',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EvidenceComponent implements OnInit {
 
-  constructor() { }
+  comment: string = "";
+
+  constructor(public authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+  }
+
+  public addComment(form: FormGroup): void {
+
   }
 
 }
