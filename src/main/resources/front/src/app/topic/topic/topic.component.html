@@ -1,19 +1,37 @@
 <div class="evidenceTableContainer">
 
-  <p-table [value]="data" [lazy]="true" (onLazyLoad)="loadEvidences($event)" [paginator]="true"
+  <p-table #dt [columns]="cols" [value]="data" [lazy]="true" (onLazyLoad)="loadEvidences($event)" [paginator]="true"
            [rows]="15" [totalRecords]="totalRecords" [loading]="loading">
-
-    <ng-template pTemplate="header">
+    <ng-template pTemplate="header" let-columns>
       <tr>
-        <th *ngFor="let col of cols">
+        <th *ngFor="let col of columns">
           {{getHeaderValue(col)}}
         </th>
       </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-evidence>
       <tr>
-        <td *ngFor="let col of cols">
-          {{evidence[col.field]}}
+        <th *ngFor="let col of columns" [ngSwitch]="col.field">
+          <input *ngSwitchCase="'evidence'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'source'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+
+          <!--some bug in primeNg, you can't just add some generic function like below, there should be new inputs -->
+          <!--<input *ngSwitchCase="isHypothese(col)" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">-->
+          <input *ngSwitchCase="'0'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'1'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'2'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'3'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'4'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'5'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'6'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'7'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'8'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'9'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
         </td>
       </tr>
     </ng-template>
