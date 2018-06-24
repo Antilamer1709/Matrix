@@ -12,6 +12,7 @@
         <th *ngFor="let col of columns" [ngSwitch]="col.field">
           <input *ngSwitchCase="'evidence'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
           <input *ngSwitchCase="'source'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <p-dropdown *ngSwitchCase="'credibility'" [options]="credibilityOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
 
           <!--some bug in primeNg, you can't just add some generic function like below, there should be new inputs -->
           <!--<input *ngSwitchCase="isHypothese(col)" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">-->

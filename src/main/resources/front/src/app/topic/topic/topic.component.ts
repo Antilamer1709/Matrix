@@ -17,6 +17,7 @@ export class TopicComponent implements OnInit {
   cols: any[];
   data: EvidenceDTO[];
   suppotOptions: SelectItem[];
+  credibilityOptions: SelectItem[];
 
   topicId: number;
   topic: TopicDTO = new TopicDTO();
@@ -82,7 +83,8 @@ export class TopicComponent implements OnInit {
   private initColumns(): void {
     this.cols = [
       { field: 'evidence', header: 'Evidence' },
-      { field: 'source', header: 'Source' }
+      { field: 'source', header: 'Source' },
+      { field: 'credibility', header: 'Credibility' }
     ];
   }
 
@@ -94,6 +96,14 @@ export class TopicComponent implements OnInit {
       { label: 'Neutral', value: '0' },
       { label: 'Dispute', value: '-' },
       { label: 'Strongly dispute', value: '--' }
+    ];
+    this.credibilityOptions = [
+      { label: 'All values', value: null },
+      { label: 'Very credible', value: '++' },
+      { label: 'Credible', value: '+' },
+      { label: 'Unknown', value: '0' },
+      { label: 'Doubtful', value: '-' },
+      { label: 'Very doubtful', value: '--' }
     ];
   }
 }
