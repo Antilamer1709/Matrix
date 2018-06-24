@@ -137,7 +137,7 @@ body {
   margin: 0 0 0 5px;
 }
 
-.postHeader {
+.evidenceHeader {
   background-color: #F7F7F9;
   padding: 15px 100px;
   text-align: center;
@@ -145,11 +145,11 @@ body {
   box-shadow: 0 0 1px rgba(0,0,0,0.5);
 }
 
-.postContent {
+.evidenceContent {
   margin-bottom: 50px;
 }
 
-.postCreatorSignature {
+.evidenceCreatorSignature {
   float: right;
   margin-bottom: 25px;
 }
@@ -178,7 +178,7 @@ body {
   margin: 0 auto;
 }
 
-.postSave {
+.evidenceSave {
   text-align: center;
   margin-top: 25px;
 }

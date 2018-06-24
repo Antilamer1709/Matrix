@@ -1,17 +1,17 @@
 <div class="container">
   <div class="marinTop50">
 
-    <div class="postHeader">
-      <h2>post</h2>
+    <div class="evidenceHeader">
+      <h2>evidenceHeader</h2>
     </div>
 
 
-    <div class="postContent">
-      post
+    <div class="evidenceContent">
+      evidenceContent
     </div>
 
     <div class="row" style="margin-right: 0; margin-bottom: 5px">
-      <div class="postCreatorSignature">
+      <div class="evidenceCreatorSignature">
         <!--{{username}} {{post | date: 'dd/MM/yyyy'}}-->
         Antilamer
       </div>
@@ -30,7 +30,7 @@
     <form *ngIf="authenticationService.loggedUser" #form="ngForm" (ngSubmit)="addComment(form)">
       <div class="addComment">
         <p-editor [(ngModel)]="comment" [style]="{'height':'200px'}" name="addComment"></p-editor>
-        <div class="form-group postSave">
+        <div class="form-group evidenceSave">
           <button pButton label="Add comment" icon="fa fa-paper-plane" type="submit"></button>
         </div>
       </div>
