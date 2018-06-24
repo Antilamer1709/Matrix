@@ -68,7 +68,7 @@ export class TopicComponent implements OnInit {
     }
   }
 
-  loadEvidences(event: LazyLoadEvent) {
+  public loadEvidences(event: LazyLoadEvent) {
     setTimeout(() => {
       this.loading = true;
     });
@@ -77,6 +77,9 @@ export class TopicComponent implements OnInit {
       this.totalRecords = x.totalElements;
       this.data = x.data;
     });
+  }
+
+  public addEvidence(): void {
 
   }
 
