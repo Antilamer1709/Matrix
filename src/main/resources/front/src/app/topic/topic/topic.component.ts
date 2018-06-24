@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EvidenceDTO, TopicDTO} from "../topic-model";
 import {TopicService} from "../topic.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {LazyLoadEvent, SelectItem} from "primeng/api";
 import {EvidenceService} from "./evidence.service";
 
@@ -24,7 +24,8 @@ export class TopicComponent implements OnInit {
 
   constructor(private topicService: TopicService,
               private evidenceService: EvidenceService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -80,7 +81,7 @@ export class TopicComponent implements OnInit {
   }
 
   public addEvidence(): void {
-
+    this.router.navigate(['topic/' + this.topicId + '/evidence/new']);
   }
 
   private initColumns(): void {

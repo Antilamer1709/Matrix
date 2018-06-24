@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
 import {TableModule} from "primeng/table";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { EvidenceComponent } from './evidence/evidence.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     DropdownModule,
     BrowserAnimationsModule
   ],
-  declarations: [TopicListComponent, TopicCardComponent, TopicComponent, NewTopicComponent]
+  declarations: [TopicListComponent, TopicCardComponent, TopicComponent, NewTopicComponent, EvidenceComponent]
 })
 export class TopicModule { }
