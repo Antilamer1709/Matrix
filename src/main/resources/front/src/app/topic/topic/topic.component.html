@@ -10,21 +10,21 @@
       </tr>
       <tr>
         <th *ngFor="let col of columns" [ngSwitch]="col.field">
-          <input *ngSwitchCase="'evidence'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'source'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'evidence'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'source'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
 
           <!--some bug in primeNg, you can't just add some generic function like below, there should be new inputs -->
           <!--<input *ngSwitchCase="isHypothese(col)" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">-->
-          <input *ngSwitchCase="'0'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'1'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'2'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'3'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'4'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'5'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'6'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'7'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'8'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'9'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'0'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'1'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'2'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'3'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'4'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'5'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'6'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'7'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'8'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <input *ngSwitchCase="'9'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
         </th>
       </tr>
     </ng-template>
