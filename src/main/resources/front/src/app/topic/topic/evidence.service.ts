@@ -12,13 +12,14 @@ export class EvidenceService {
 
   constructor(private http: HttpClient) { }
 
-  getEvidences(event: LazyLoadEvent): Observable<ResponseDTO<EvidenceDTO[]>> {
-    let searchDTO = this.createSearchDTO(event);
+  getEvidences(topicId: number, event: LazyLoadEvent): Observable<ResponseDTO<EvidenceDTO[]>> {
+    let searchDTO = this.createSearchDTO(topicId, event);
     return this.http.post<ResponseDTO<EvidenceDTO[]>>('/api/evidence/search', searchDTO);
   }
 
-  private createSearchDTO(event: LazyLoadEvent): SearchDTO<EvidenceDTO> {
+  private createSearchDTO(topicId: number, event: LazyLoadEvent): SearchDTO<EvidenceDTO> {
     let searchDTO = new SearchDTO<EvidenceDTO>();
+    searchDTO.id = topicId;
     searchDTO.first = event.first;
     searchDTO.rows = event.rows;
     searchDTO.sortField = event.sortField;

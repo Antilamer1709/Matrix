@@ -1,4 +1,5 @@
 export class SearchDTO<T> {
+  id: number;
   first: number;
   rows: number;
   sortOrder: number;

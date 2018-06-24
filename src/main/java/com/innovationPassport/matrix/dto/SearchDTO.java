@@ -8,6 +8,8 @@ import org.springframework.data.domain.Sort;
 @Data
 public class SearchDTO<T> {
 
+    private Integer id;
+
     private Integer first;
 
     private Integer rows;

@@ -70,7 +70,7 @@ export class TopicComponent implements OnInit {
     setTimeout(() => {
       this.loading = true;
     });
-    this.evidenceService.getEvidences(event).subscribe(x => {
+    this.evidenceService.getEvidences(this.topicId, event).subscribe(x => {
       this.loading = false;
       this.totalRecords = x.totalElements;
       this.data = x.data;
