@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EvidenceDTO, TopicDTO} from "../topic-model";
 import {TopicService} from "../topic.service";
 import {ActivatedRoute, Params} from "@angular/router";
-import {LazyLoadEvent} from "primeng/api";
+import {LazyLoadEvent, SelectItem} from "primeng/api";
 import {EvidenceService} from "./evidence.service";
 
 @Component({
@@ -16,6 +16,7 @@ export class TopicComponent implements OnInit {
   totalRecords: number;
   cols: any[];
   data: EvidenceDTO[];
+  suppotOptions: SelectItem[];
 
   topicId: number;
   topic: TopicDTO = new TopicDTO();
@@ -27,6 +28,7 @@ export class TopicComponent implements OnInit {
 
   ngOnInit() {
     this.loading = false;
+    this.initDicts();
     this.initColumns();
     this.initTopicId();
     this.initTopic();
@@ -84,4 +86,14 @@ export class TopicComponent implements OnInit {
     ];
   }
 
+  private initDicts(): void {
+    this.suppotOptions = [
+      { label: 'All values', value: null },
+      { label: 'Strongly support', value: '++' },
+      { label: 'Support', value: '+' },
+      { label: 'Neutral', value: '0' },
+      { label: 'Dispute', value: '-' },
+      { label: 'Strongly dispute', value: '--' }
+    ];
+  }
 }

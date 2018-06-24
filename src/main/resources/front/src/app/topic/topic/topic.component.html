@@ -15,16 +15,16 @@
 
           <!--some bug in primeNg, you can't just add some generic function like below, there should be new inputs -->
           <!--<input *ngSwitchCase="isHypothese(col)" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">-->
-          <input *ngSwitchCase="'0'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'1'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'2'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'3'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'4'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'5'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'6'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'7'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'8'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-          <input *ngSwitchCase="'9'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <p-dropdown *ngSwitchCase="'0'" [options]="suppotOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+          <p-dropdown *ngSwitchCase="'1'" [options]="suppotOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+          <p-dropdown *ngSwitchCase="'2'" [options]="suppotOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+          <p-dropdown *ngSwitchCase="'3'" [options]="suppotOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+          <p-dropdown *ngSwitchCase="'4'" [options]="suppotOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+          <p-dropdown *ngSwitchCase="'5'" [options]="suppotOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+          <p-dropdown *ngSwitchCase="'6'" [options]="suppotOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+          <p-dropdown *ngSwitchCase="'7'" [options]="suppotOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+          <p-dropdown *ngSwitchCase="'8'" [options]="suppotOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+          <p-dropdown *ngSwitchCase="'9'" [options]="suppotOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
         </th>
       </tr>
     </ng-template>
