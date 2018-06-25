@@ -11,5 +11,5 @@ export class EvidenceDTO {
   evidence: string;
   source: string;
   credibility: string;
-  hypotheses: Map<number, string>;
+  hypotheses: { [key: number]: string; };
 }

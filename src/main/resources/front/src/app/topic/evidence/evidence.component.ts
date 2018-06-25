@@ -55,7 +55,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
 
   private initEvidence(): void {
     this.evidence = new EvidenceDTO();
-    this.evidence.hypotheses = new Map<number, string>();
+    this.evidence.hypotheses = {};
     this.evidence.topicId = this.topicId;
   }
 
@@ -83,7 +83,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
   }
 
   public onSupportChange(event, index): any {
-    this.evidence.hypotheses.set(index, event);
+    this.evidence.hypotheses[index] = event.value;
   }
 
 }
