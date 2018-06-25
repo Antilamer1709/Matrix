@@ -9,26 +9,33 @@
     </div>
 
 
-    <div class="evidenceContent flexCenter" style="padding-top: 30px">
+    <div class="evidenceContent" style="padding-top: 30px">
 
       <div class="row">
 
-        <div class="form-group marginBottom25 marginRight25">
+        <div class="form-group marginBottom25 marginRight25" style="width: 100%">
           <span class="ui-float-label">
-            <input [(ngModel)]="evidence.evidence" [required]="true" id="evidence" name="evidence" type="text" size="47" pInputText>
+            <input [(ngModel)]="evidence.evidence" [required]="true" id="evidence" name="evidence" type="text"
+                   style="width: 100%" pInputText>
             <label for="evidence">Evidence</label>
           </span>
         </div>
 
-        <div class="form-group marginBottom25 marginRight25">
-          <span class="ui-float-label" style="float: right">
-            <input [(ngModel)]="evidence.source" [required]="true" id="source" name="source" type="text" size="47" pInputText>
+      </div>
+
+      <div class="row">
+
+        <div class="form-group marginBottom25 marginRight25" style="width: 77%">
+          <span class="ui-float-label">
+            <input [(ngModel)]="evidence.source" [required]="true" id="source" name="source" type="text" style="width: 100%; height: 33px"
+                   pInputText>
             <label for="source">Source</label>
           </span>
         </div>
 
         <div class="form-group marginBottom25 marginRight25">
-          <p-dropdown [options]="credibilityOptions" [style]="{'width':'100%'}" (onChange)="evidence.source= $event.value"></p-dropdown>
+          <p-dropdown [options]="credibilityOptions" [style]="{'width':'100%'}"
+                      (onChange)="evidence.source= $event.value"></p-dropdown>
         </div>
 
 
