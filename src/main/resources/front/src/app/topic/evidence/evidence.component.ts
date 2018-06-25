@@ -6,6 +6,7 @@ import {TopicService} from "../topic.service";
 import {EvidenceService} from "../topic/evidence.service";
 import {EvidenceDTO, TopicDTO} from "../topic-model";
 import {CommonComponent} from "../../common/common-component";
+import {SelectItem} from "primeng/api";
 
 @Component({
   selector: 'app-evidence',
@@ -52,10 +53,23 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
 
   private initEvidence(): void {
     this.evidence = new EvidenceDTO();
+    this.evidence.hypotheses = new Map<number, string>();
+  }
+
+  public submit(form: FormGroup): void {
+    console.log(this.evidence)
   }
 
   public addComment(form: FormGroup): void {
 
+  }
+
+  public getSupportModel(index): any {
+    // return this.suppotOptions[index + 1].value;
+  }
+
+  public onSupportChange(event, index): any {
+    this.evidence.hypotheses.set(index, event);
   }
 
 }
