@@ -36,7 +36,7 @@
           </div>
 
           <div class="form-group marginBottom25 marginRight25">
-            <p-dropdown [options]="credibilityOptions" [style]="{'width':'100%'}" [disabled]="disabled"
+            <p-dropdown [options]="credibilityOptions" [style]="{'width':'160px'}" [disabled]="disabled" required="true"
                         (onChange)="evidence.credibility = $event.value"></p-dropdown>
           </div>
 
@@ -50,9 +50,8 @@
 
           <div class="row">
             <div class="form-group marginBottom25 marginRight25">
-              <p-dropdown [options]="suppotOptions" [style]="{'width':'100%'}" [disabled]="disabled"
-                          [ngModel]="getSupportModel(i)" name="source{{i}}"
-                          (onChange)="onSupportChange($event, i)"></p-dropdown>
+              <p-dropdown [options]="suppotOptions" [style]="{'width':'160px'}" [disabled]="disabled" required="true"
+                          [ngModel]="getSupportModel(i)" name="source{{i}}" (onChange)="onSupportChange($event, i)"></p-dropdown>
             </div>
           </div>
 
