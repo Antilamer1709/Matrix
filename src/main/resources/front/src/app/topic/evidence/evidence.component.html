@@ -37,7 +37,7 @@
 
           <div class="form-group marginBottom25 marginRight25">
             <p-dropdown [options]="credibilityOptions" [style]="{'width':'160px'}" [disabled]="disabled" required="true"
-                        (onChange)="evidence.credibility = $event.value"></p-dropdown>
+                        [(ngModel)]="evidence.credibility" name="credibility"></p-dropdown>
           </div>
 
         </div>
