@@ -16,6 +16,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
 
   comment: string = "";
 
+  disabled: boolean = false;
   topicId: number;
   evidenceId: string;
   topic: TopicDTO = new TopicDTO();
