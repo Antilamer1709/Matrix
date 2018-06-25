@@ -57,31 +57,35 @@
 
     </div>
 
-    <div class="row" style="margin-right: 0; margin-bottom: 5px">
+    <div class="row" style="margin-right: 0; margin-bottom: 5px" *ngIf="evidenceId != 'new'">
       <div class="evidenceCreatorSignature">
         <!--{{username}} {{post | date: 'dd/MM/yyyy'}}-->
         Antilamer
       </div>
     </div>
 
-    <!--<div *ngFor="let comment of post.comments" class="commentBody">-->
-    <div class="commentBody">
-      <div class="commentHeader">
-        <!--<h6 style="margin: 0">{{comment.user.username}} {{comment.creationDate | date: 'dd/MM/yyyy'}}</h6>-->
-        <h6 style="margin: 0">username</h6>
-      </div>
+    <div *ngIf="evidenceId != 'new'">
 
-      <div [innerHTML]="comment" class="commentText"></div>
-    </div>
-
-    <form *ngIf="authenticationService.loggedUser" #form="ngForm" (ngSubmit)="addComment(form)">
-      <div class="addComment">
-        <p-editor [(ngModel)]="comment" [style]="{'height':'200px'}" name="addComment"></p-editor>
-        <div class="form-group evidenceSave">
-          <button pButton label="Add comment" icon="fa fa-paper-plane" type="submit"></button>
+      <!--<div *ngFor="let comment of post.comments" class="commentBody">-->
+      <div class="commentBody">
+        <div class="commentHeader">
+          <!--<h6 style="margin: 0">{{comment.user.username}} {{comment.creationDate | date: 'dd/MM/yyyy'}}</h6>-->
+          <h6 style="margin: 0">username</h6>
         </div>
+
+        <div [innerHTML]="comment" class="commentText"></div>
       </div>
-    </form>
+
+      <form *ngIf="authenticationService.loggedUser" #form="ngForm" (ngSubmit)="addComment(form)">
+        <div class="addComment">
+          <p-editor [(ngModel)]="comment" [style]="{'height':'200px'}" name="addComment"></p-editor>
+          <div class="form-group evidenceSave">
+            <button pButton label="Add comment" icon="fa fa-paper-plane" type="submit"></button>
+          </div>
+        </div>
+      </form>
+
+    </div>
 
   </div>
 </div>

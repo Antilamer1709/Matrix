@@ -8,5 +8,5 @@ export const TopicRoutes: Route[] = [
   { path: 'topic', component: TopicListComponent },
   { path: 'topic/new', component: NewTopicComponent },
   { path: 'topic/:id', component: TopicComponent },
-  { path: 'topic/:id/evidence/new', component: EvidenceComponent }
+  { path: 'topic/:id/evidence/:evidenceId', component: EvidenceComponent }
 ];

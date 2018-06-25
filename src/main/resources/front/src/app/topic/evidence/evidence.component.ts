@@ -17,6 +17,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
   comment: string = "";
 
   topicId: number;
+  evidenceId: string;
   topic: TopicDTO = new TopicDTO();
   evidence: EvidenceDTO;
 
@@ -28,15 +29,17 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initTopicId();
+    this.initRouteParams();
     this.initTopic();
     this.initEvidence();
     this.initDicts();
   }
 
-  private initTopicId(): void {
+  private initRouteParams(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.topicId = params['id'];
+      this.evidenceId = params['evidenceId'];
+      console.log(this.evidenceId)
     });
   }
 
