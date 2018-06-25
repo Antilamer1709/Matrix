@@ -4,20 +4,19 @@ import {TopicService} from "../topic.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {LazyLoadEvent, SelectItem} from "primeng/api";
 import {EvidenceService} from "./evidence.service";
+import {CommonComponent} from "../../common/common-component";
 
 @Component({
   selector: 'app-topic',
   templateUrl: './topic.component.html',
   styleUrls: ['./topic.component.css']
 })
-export class TopicComponent implements OnInit {
+export class TopicComponent extends CommonComponent implements OnInit {
 
   loading: boolean;
   totalRecords: number;
   cols: any[];
   data: EvidenceDTO[];
-  suppotOptions: SelectItem[];
-  credibilityOptions: SelectItem[];
 
   topicId: number;
   topic: TopicDTO = new TopicDTO();
@@ -26,6 +25,7 @@ export class TopicComponent implements OnInit {
               private evidenceService: EvidenceService,
               private activatedRoute: ActivatedRoute,
               private router: Router) {
+    super();
   }
 
   ngOnInit() {
@@ -92,22 +92,4 @@ export class TopicComponent implements OnInit {
     ];
   }
 
-  private initDicts(): void {
-    this.suppotOptions = [
-      { label: 'All values', value: null },
-      { label: 'Strongly support', value: '++' },
-      { label: 'Support', value: '+' },
-      { label: 'Neutral', value: '0' },
-      { label: 'Dispute', value: '-' },
-      { label: 'Strongly dispute', value: '--' }
-    ];
-    this.credibilityOptions = [
-      { label: 'All values', value: null },
-      { label: 'Very credible', value: '++' },
-      { label: 'Credible', value: '+' },
-      { label: 'Unknown', value: '0' },
-      { label: 'Doubtful', value: '-' },
-      { label: 'Very doubtful', value: '--' }
-    ];
-  }
 }

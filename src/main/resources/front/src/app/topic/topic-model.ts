@@ -9,4 +9,5 @@ export class EvidenceDTO {
   id: number;
   evidence: string;
   source: string;
+  credibility: string;
 }

@@ -4,13 +4,37 @@
     <div class="evidenceHeader">
       <h1>New evidence</h1>
     </div>
-    <div class="evidenceHeader" style="margin-bottom: 35px">
+    <div class="evidenceHeader">
       <h3>{{topic.name}}</h3>
     </div>
 
 
-    <div class="evidenceContent">
-      evidenceContent
+    <div class="evidenceContent flexCenter" style="padding-top: 30px">
+
+      <div class="row">
+
+        <div class="form-group marginBottom25 marginRight25">
+          <span class="ui-float-label">
+            <input [(ngModel)]="evidence.evidence" [required]="true" id="evidence" name="evidence" type="text" size="47" pInputText>
+            <label for="evidence">Evidence</label>
+          </span>
+        </div>
+
+        <div class="form-group marginBottom25 marginRight25">
+          <span class="ui-float-label" style="float: right">
+            <input [(ngModel)]="evidence.source" [required]="true" id="source" name="source" type="text" size="47" pInputText>
+            <label for="source">Source</label>
+          </span>
+        </div>
+
+        <div class="form-group marginBottom25 marginRight25">
+          <p-dropdown [options]="credibilityOptions" [style]="{'width':'100%'}" (onChange)="evidence.source= $event.value"></p-dropdown>
+        </div>
+
+
+        <!--<p-dropdown [options]="suppotOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>-->
+      </div>
+
     </div>
 
     <div class="row" style="margin-right: 0; margin-bottom: 5px">

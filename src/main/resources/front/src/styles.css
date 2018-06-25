@@ -39,6 +39,10 @@ body {
   margin-bottom: 25px !important;
 }
 
+.marginRight25 {
+  margin-right: 25px;
+}
+
 .marinTop50 {
   margin-top: 50px;
 }
@@ -145,7 +149,9 @@ body {
 }
 
 .evidenceContent {
-  margin-bottom: 50px;
+  background-color: #F7F7F9;
+  padding: 10px 100px;
+  box-shadow: 0 0 1px rgba(0,0,0,0.5);
 }
 
 .evidenceCreatorSignature {
