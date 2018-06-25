@@ -40,7 +40,7 @@
 
       </div>
 
-      <div *ngFor="let hypothese of topic.hypotheses" class="">
+      <div *ngFor="let hypothese of topic.hypotheses">
 
         <div class="row">
           {{hypothese}}
@@ -54,6 +54,13 @@
         </div>
 
       </div>
+
+      <div style="float: right;">
+        <button pButton label="Save" icon="fa fa-paper-plane" type="submit"></button>
+      </div>
+
+      <!--fix for float above element-->
+      <div style="height: 30px"></div>
 
     </div>
 
