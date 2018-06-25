@@ -30,4 +30,8 @@ export class EvidenceService {
     return searchDTO;
   }
 
+  createEvidence(evidence: EvidenceDTO): Observable<any> {
+    return this.http.post('/api/evidence/create', evidence);
+  }
+
 }

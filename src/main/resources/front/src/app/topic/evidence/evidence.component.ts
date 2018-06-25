@@ -7,6 +7,7 @@ import {EvidenceService} from "../topic/evidence.service";
 import {EvidenceDTO, TopicDTO} from "../topic-model";
 import {CommonComponent} from "../../common/common-component";
 import {SelectItem} from "primeng/api";
+import {MessageService} from "primeng/components/common/messageservice";
 
 @Component({
   selector: 'app-evidence',
@@ -24,6 +25,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
   evidence: EvidenceDTO;
 
   constructor(public authenticationService: AuthenticationService,
+              private messageService: MessageService,
               private topicService: TopicService,
               private evidenceService: EvidenceService,
               private activatedRoute: ActivatedRoute) {
@@ -54,10 +56,22 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
   private initEvidence(): void {
     this.evidence = new EvidenceDTO();
     this.evidence.hypotheses = new Map<number, string>();
+    this.evidence.topicId = this.topicId;
   }
 
   public submit(form: FormGroup): void {
-    console.log(this.evidence)
+    console.log(this.evidence);
+
+    if (form.valid) {
+      this.evidenceService.createEvidence(this.evidence).subscribe(
+        (res) => {
+          console.log(res);
+          this.messageService.add({severity:'info', summary:'Success', detail:'Evidence has been created!'});
+        }
+      );
+    } else {
+      this.messageService.add({severity:'error', summary:'Error', detail:'Please, fill all fields in correct way!'});
+    }
   }
 
   public addComment(form: FormGroup): void {

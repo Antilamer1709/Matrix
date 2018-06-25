@@ -12,6 +12,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,4 +47,8 @@ public class EvidenceBO {
         return evidenceEntity;
     }
 
+    @Transactional
+    public void create(EvidenceDTO evidenceDTO) {
+        System.out.println();
+    }
 }
