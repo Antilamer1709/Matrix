@@ -19,7 +19,6 @@ export class EvidenceService {
 
   private createSearchDTO(topicId: number, event: LazyLoadEvent): SearchDTO<EvidenceDTO> {
     let searchDTO = new SearchDTO<EvidenceDTO>();
-    searchDTO.id = topicId;
     searchDTO.first = event.first;
     searchDTO.rows = event.rows;
     searchDTO.sortField = event.sortField;
@@ -27,6 +26,7 @@ export class EvidenceService {
 
     searchDTO.filter = new EvidenceDTO();
     searchDTO.filter.hypotheses = {};
+    searchDTO.filter.topicId = searchDTO.id = topicId;
 
     for (let field in event.filters) {
       if (isNaN(Number(field))) {

@@ -12,6 +12,10 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
     @Override
     protected void initSearchWhereParameters(EvidenceDTO filter, Map<String, Object> params) {
         if (filter != null) {
+
+            if (filter.getTopicId() != null)
+                params.put("topicId", filter.getTopicId());
+
             if (filter.getId() != null)
                 params.put("id", filter.getId());
 
@@ -24,12 +28,23 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
             if (!StringUtils.isEmpty(filter.getCredibility()))
                 params.put("credibility", filter.getCredibility().trim());
 
+
+            if (filter.getHypotheses() != null && filter.getHypotheses().size() > 0) {
+                filter.getHypotheses().forEach((index, value) -> {
+//                    params.put("index" + index, index);
+                    params.put("value" + index, value);
+                });
+            }
+
         }
     }
 
     @Override
     protected String getSearchWhereStatement(EvidenceDTO filter) {
         StringBuilder whereStatementBuilder = new StringBuilder();
+
+        whereStatementBuilder.append(" AND topic.id = :topicId ");
+
         if (filter.getId() != null)
             whereStatementBuilder.append(" AND  U.id = :id ");
 
@@ -46,18 +61,39 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
             whereStatementBuilder.append(" AND  U.credibility = :credibility ");
         }
 
+        if (filter.getHypotheses() != null && filter.getHypotheses().size() > 0) {
+            filter.getHypotheses().forEach((index, value) -> {
+//                whereStatementBuilder.append(" AND  evidenceHypotheses.index = :index" + index + " ");
+                whereStatementBuilder.append(" AND  evidenceHypotheses.value = :value" + index + " ");
+            });
+        }
+
         return whereStatementBuilder.toString();
     }
 
 
     @Override
     protected String getJoinForFetchStatement(EvidenceDTO filter) {
-        return " ";
+        StringBuilder join = new StringBuilder();
+        join.append(" LEFT JOIN U.topic topic");
+
+        if(filter.getHypotheses() != null && filter.getHypotheses().size() > 0) {
+            join.append(" LEFT JOIN U.evidenceHypotheses evidenceHypotheses");
+        }
+
+        return join.toString();
     }
 
     @Override
     protected String getJoinForCountStatement(EvidenceDTO filter) {
-        return " ";
+        StringBuilder join = new StringBuilder();
+        join.append(" LEFT JOIN U.topic topic");
+
+        if(filter.getHypotheses() != null && filter.getHypotheses().size() > 0) {
+            join.append(" LEFT JOIN U.evidenceHypotheses evidenceHypotheses");
+        }
+
+        return join.toString();
     }
 
 
