@@ -26,6 +26,9 @@ export class EvidenceService {
     searchDTO.sortOrder = event.sortOrder;
 
     searchDTO.filter = new EvidenceDTO();
+    for (let field in event.filters) {
+      searchDTO.filter[field] = event.filters[field].value;
+    }
 
     return searchDTO;
   }
