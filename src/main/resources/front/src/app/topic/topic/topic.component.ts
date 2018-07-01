@@ -62,6 +62,14 @@ export class TopicComponent extends CommonComponent implements OnInit {
     }
   }
 
+  public getEvidenceValue(rowData, col): string {
+    if (isNaN(Number(col.field))) {
+      return rowData[col.field]
+    } else {
+      return rowData.hypotheses[col.field];
+    }
+  }
+
   private addHypotheseColumns(): void {
     for (let i = 0; i < this.topic.hypotheses.length ; i++) {
       //for hypothese fields used indexes from topic.hypotheses array

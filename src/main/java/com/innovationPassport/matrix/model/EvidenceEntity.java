@@ -1,8 +1,11 @@
 package com.innovationPassport.matrix.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -30,5 +33,9 @@ public class EvidenceEntity {
 
     @Column(name = "credibility")
     private String credibility;
+
+    @OneToMany(mappedBy = "evidence", fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<EvidenceHypotheseEntity> evidenceHypotheses;
 
 }

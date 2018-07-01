@@ -44,9 +44,9 @@
 
     <ng-template pTemplate="body" let-rowData let-columns="columns">
 
-      <tr [pSelectableRow]="rowData">
+      <tr>
         <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
+          {{getEvidenceValue(rowData, col)}}
         </td>
       </tr>
 
