@@ -31,7 +31,7 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
 
             if (filter.getHypotheses() != null && filter.getHypotheses().size() > 0) {
                 filter.getHypotheses().forEach((index, value) -> {
-//                    params.put("index" + index, index);
+                    params.put("position" + index, index);
                     params.put("value" + index, value);
                 });
             }
@@ -63,7 +63,7 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
 
         if (filter.getHypotheses() != null && filter.getHypotheses().size() > 0) {
             filter.getHypotheses().forEach((index, value) -> {
-//                whereStatementBuilder.append(" AND  evidenceHypotheses.index = :index" + index + " ");
+                whereStatementBuilder.append(" AND  evidenceHypotheses.position = :position" + index + " ");
                 whereStatementBuilder.append(" AND  evidenceHypotheses.value = :value" + index + " ");
             });
         }

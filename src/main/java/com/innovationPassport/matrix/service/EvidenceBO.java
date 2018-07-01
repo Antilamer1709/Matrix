@@ -65,7 +65,7 @@ public class EvidenceBO {
             EvidenceHypotheseEntity evidenceHypotheseEntity = new EvidenceHypotheseEntity();
             evidenceHypotheseEntity.setEvidence(evidenceEntity);
             evidenceHypotheseEntity.setValue(value);
-            evidenceHypotheseEntity.setIndex(index);
+            evidenceHypotheseEntity.setPosition(index);
 
             evidenceHypotheseRepo.save(evidenceHypotheseEntity);
         });

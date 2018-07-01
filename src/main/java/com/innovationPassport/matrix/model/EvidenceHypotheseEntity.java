@@ -21,7 +21,7 @@ public class EvidenceHypotheseEntity {
     @Column(name = "value")
     private String value;
 
-    @Column(name="\"index\"")
-    private Integer index;
+    @Column(name="position")
+    private Integer position;
 
 }

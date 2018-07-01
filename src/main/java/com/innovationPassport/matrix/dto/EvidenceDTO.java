@@ -31,6 +31,6 @@ public class EvidenceDTO {
         this.credibility = entity.getCredibility();
 
         this.hypotheses = new HashMap<>();
-        entity.getEvidenceHypotheses().forEach(x -> this.hypotheses.put(x.getIndex(), x.getValue()));
+        entity.getEvidenceHypotheses().forEach(x -> this.hypotheses.put(x.getPosition(), x.getValue()));
     }
 }
