@@ -38,26 +38,10 @@ public class EvidenceBO {
 
 
     public ResponseDTO<List<EvidenceDTO>> search(SearchDTO<EvidenceDTO> searchDTO) {
-        EvidenceEntity evidenceEntity = createExampleEntity(searchDTO);
-
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("evidence", match -> match.ignoreCase().contains())
-                .withMatcher("source", match -> match.ignoreCase().contains());
-
-        Page<EvidenceEntity> page = evidenceRepo.findAll(Example.of(evidenceEntity, matcher), searchDTO.toPageable());
+        Page<EvidenceEntity> page = evidenceRepo.getPagedData(searchDTO);
 
         List<EvidenceDTO> content = page.getContent().stream().map(EvidenceDTO::new).collect(Collectors.toList());
         return new ResponseDTO<>(content, page.getTotalElements(), page.getTotalPages());
-    }
-
-    private EvidenceEntity createExampleEntity(SearchDTO<EvidenceDTO> searchDTO) {
-        EvidenceEntity evidenceEntity = new EvidenceEntity();
-        TopicEntity topicEntity = new TopicEntity();
-        topicEntity.setId(searchDTO.getId());
-        BeanUtils.copyProperties(searchDTO.getFilter(), evidenceEntity);
-        evidenceEntity.setTopic(topicEntity);
-
-        return evidenceEntity;
     }
 
     @Transactional
