@@ -26,8 +26,15 @@ export class EvidenceService {
     searchDTO.sortOrder = event.sortOrder;
 
     searchDTO.filter = new EvidenceDTO();
+    searchDTO.filter.hypotheses = {};
+
     for (let field in event.filters) {
-      searchDTO.filter[field] = event.filters[field].value;
+      if (isNaN(Number(field))) {
+        searchDTO.filter[field] = event.filters[field].value;
+      } else {
+        // by index
+        searchDTO.filter.hypotheses[field] = event.filters[field].value;
+      }
     }
 
     return searchDTO;
