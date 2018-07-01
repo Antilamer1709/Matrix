@@ -18,6 +18,12 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
             if (!StringUtils.isEmpty(filter.getEvidence()))
                 params.put("evidence", filter.getEvidence().trim());
 
+            if (!StringUtils.isEmpty(filter.getSource()))
+                params.put("source", filter.getSource().trim());
+
+            if (!StringUtils.isEmpty(filter.getCredibility()))
+                params.put("credibility", filter.getCredibility().trim());
+
         }
     }
 
@@ -30,6 +36,14 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
 
         if (!StringUtils.isEmpty(filter.getEvidence())) {
             whereStatementBuilder.append(" AND LOWER(LTRIM(U.evidence)) LIKE LOWER(CONCAT(:evidence, '%')) ");
+        }
+
+        if (!StringUtils.isEmpty(filter.getSource())) {
+            whereStatementBuilder.append(" AND LOWER(LTRIM(U.source)) LIKE LOWER(CONCAT(:source, '%')) ");
+        }
+
+        if (!StringUtils.isEmpty(filter.getCredibility())) {
+            whereStatementBuilder.append(" AND  U.credibility = :credibility ");
         }
 
         return whereStatementBuilder.toString();
