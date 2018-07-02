@@ -51,7 +51,8 @@
           <div class="row">
             <div class="form-group marginBottom25 marginRight25">
               <p-dropdown [options]="suppotOptions" [style]="{'width':'160px'}" [disabled]="disabled" required="true"
-                          [ngModel]="getSupportModel(i)" name="source{{i}}" (onChange)="onSupportChange($event, i)"></p-dropdown>
+                          [ngModel]="getSupportModel(i)" name="source{{i}}"
+                          (onChange)="onSupportChange($event, i)"></p-dropdown>
             </div>
           </div>
 
@@ -59,7 +60,8 @@
 
         <div style="float: right;">
           <button *ngIf="!disabled" pButton label="Save" icon="fa fa-paper-plane" type="submit"></button>
-          <button *ngIf="isEditButtonVisible()" (click)="onEditClick()" pButton label="Edit" icon="fa fa-paper-plane" type="button"></button>
+          <button *ngIf="isEditButtonVisible()" (click)="onEditClick()" pButton label="Edit" icon="fa fa-paper-plane"
+                  type="button"></button>
         </div>
 
         <!--fix for float above element-->
@@ -79,7 +81,8 @@
 
       <div *ngFor="let comment of evidence.comments" class="commentBody">
         <div class="commentHeader">
-          <h6 style="margin: 0">{{comment.user.firstName + " " + comment.user.lastName + " (" + comment.user.username + ")"}}</h6>
+          <h6 style="margin: 0">{{comment.user.firstName + " " + comment.user.lastName + " (" + comment.user.username +
+            ")"}}</h6>
         </div>
 
         <div [innerHTML]="comment.comment" class="commentText"></div>
@@ -87,7 +90,15 @@
 
       <form *ngIf="authenticationService.loggedUser" #form="ngForm" (ngSubmit)="addComment(form)">
         <div class="addComment">
-          <p-editor [(ngModel)]="commentDTO.comment" [style]="{'height':'200px'}" name="addComment"></p-editor>
+          <p-editor [(ngModel)]="commentDTO.comment" [style]="{'height':'200px'}" name="addComment">
+            <p-header>
+              <span class="ql-formats">
+                  <button class="ql-bold" aria-label="Bold"></button>
+                  <button class="ql-italic" aria-label="Italic"></button>
+                  <button class="ql-underline" aria-label="Underline"></button>
+              </span>
+            </p-header>
+          </p-editor>
           <div class="form-group evidenceSave">
             <button pButton label="Add comment" icon="fa fa-paper-plane" type="submit"></button>
           </div>
