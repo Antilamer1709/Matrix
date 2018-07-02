@@ -247,3 +247,6 @@ body {
 .varyBadCell {
   background-color: #B40000 !important;
 }
+.normalCell {
+  background-color: #d6d4d4 !important;
+}

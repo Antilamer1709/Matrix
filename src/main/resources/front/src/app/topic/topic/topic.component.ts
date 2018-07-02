@@ -5,6 +5,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {LazyLoadEvent, SelectItem} from "primeng/api";
 import {EvidenceService} from "./evidence.service";
 import {CommonComponent} from "../../common/common-component";
+import {v} from "@angular/core/src/render3";
 
 @Component({
   selector: 'app-topic',
@@ -116,7 +117,7 @@ export class TopicComponent extends CommonComponent implements OnInit {
     let field = this.getFieldValue(rowData, col);
     switch (field) {
       case "0": {
-        return null;
+        return 'normalCell';
       }
       case "++": {
         return 'veryGoodCell';
@@ -141,6 +142,10 @@ export class TopicComponent extends CommonComponent implements OnInit {
     } else {
       return rowData.hypotheses[col.field];
     }
+  }
+
+  public onRowSelect(event): void {
+    this.router.navigate(['topic/' + this.topicId + '/evidence/' + event.data.id]);
   }
 
 }
