@@ -2,6 +2,7 @@ package com.innovationPassport.matrix.service;
 
 import com.innovationPassport.matrix.dto.EvidenceDTO;
 import com.innovationPassport.matrix.dto.SearchDTO;
+import com.innovationPassport.matrix.dto.UserDTO;
 import com.innovationPassport.matrix.dto.response.ResponseDTO;
 import com.innovationPassport.matrix.exception.ValidationException;
 import com.innovationPassport.matrix.model.EvidenceEntity;
@@ -81,6 +82,7 @@ public class EvidenceBO {
         }
         EvidenceDTO evidenceDTO = new EvidenceDTO(evidenceEntity);
         evidenceDTO.setTopicId(evidenceEntity.getTopic().getId());
+        evidenceDTO.setCreator(new UserDTO(evidenceEntity.getUser()));
 
         return evidenceDTO;
     }

@@ -68,10 +68,10 @@
 
     </div>
 
-    <div class="row" style="margin-right: 0; margin-bottom: 5px" *ngIf="evidenceId != 'new'">
+    <div class="row" style="margin-right: 0; margin-left: 20px; margin-bottom: 5px" *ngIf="evidenceId != 'new'">
       <div class="evidenceCreatorSignature">
         <!--{{username}} {{post | date: 'dd/MM/yyyy'}}-->
-        Antilamer
+        {{evidence.creator.firstName + " " + evidence.creator.lastName + " (" + evidence.creator.username + ")"}}
       </div>
     </div>
 

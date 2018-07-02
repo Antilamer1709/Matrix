@@ -21,6 +21,8 @@ public class EvidenceDTO {
 
     private Map<Integer, String> hypotheses;
 
+    private UserDTO creator;
+
     public EvidenceDTO() {
     }
 

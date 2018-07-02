@@ -1,3 +1,5 @@
+import {UserDTO} from "../authentication/authentication-model";
+
 export class TopicDTO {
   id: number;
   name: string;
@@ -12,4 +14,5 @@ export class EvidenceDTO {
   source: string;
   credibility: string;
   hypotheses: { [key: number]: string; };
+  creator: UserDTO;
 }
