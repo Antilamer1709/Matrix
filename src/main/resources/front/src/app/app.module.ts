@@ -11,6 +11,8 @@ import {MessageService} from "primeng/components/common/messageservice";
 import {CustomHttpInterceptor} from "./common/http-interceptor";
 import {TopicModule} from "./topic/topic.module";
 import {BlockUIModule} from "primeng/blockui";
+import {MenubarModule} from "primeng/menubar";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {BlockUIModule} from "primeng/blockui";
     AuthenticationModule,
     GrowlModule,
     TopicModule,
-    BlockUIModule
+    BlockUIModule,
+    MenubarModule,
+    ButtonModule
   ],
   providers: [
     MessageService,

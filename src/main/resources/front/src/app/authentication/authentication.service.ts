@@ -28,4 +28,13 @@ export class AuthenticationService extends CommonService {
     }
   }
 
+  public hasAdminRole(): boolean {
+    if (!this.loggedUser) {
+      return false;
+    } else {
+      return this.loggedUser.roles.indexOf('ROLE_ADMIN') > -1;
+    }
+
+  }
+
 }

@@ -187,3 +187,47 @@ body {
   text-align: center;
   margin-top: 25px;
 }
+
+
+/*toolbar*/
+.ui-menubar-custom {
+  float: left !important;
+  width: 100% !important;
+}
+
+.forumImage {
+  height: 30px;
+  cursor: pointer;
+  margin-right: 80px;
+  margin-left: 20px;
+}
+
+.dashboardLink {
+  text-decoration: none !important;
+}
+
+.ui-menuitem.ui-widget.ui-corner-all {
+  margin: 0.35em 0 !important;
+}
+
+.ui-menu.ui-corner-all{
+  border-radius: 0 !important;
+}
+
+.activeLink {
+  color: #014c8c !important;
+  background-color: #e1e4ea;
+}
+
+.menuLink {
+  color: #356a93 !important;
+  font-weight: 600 !important;
+}
+.menuLink:hover {
+  background-color: #d5deef;
+}
+
+.authenticationButton {
+  float: right;
+  margin-top: 4px;
+}

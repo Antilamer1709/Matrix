@@ -1,10 +1,37 @@
 <p-growl [(value)]="msgs"></p-growl>
 <p-blockUI [blocked]="appService.blockedUI"></p-blockUI>
 
-<a [routerLink]="'/login'">login </a>
-<button (click)="logout()">Logout</button>
-<a [routerLink]="'/registration'"> registration </a>
-<a [routerLink]="'/'"> topics </a>
-<a [routerLink]="'/topic/new'"> new topic </a>
+<div>
+  <p-menubar>
+
+    <a routerLink="topic" class="dashboardLink" style="float:left">
+      <img src="assets/images/forum.png" class="forumImage">
+    </a>
+
+    <a routerLink="/profile/{{authenticationService.loggedUser.username}}" [routerLinkActive]="'activeLink'"
+       class="btn btn-default menuLink" *ngIf="authenticationService.loggedUser">
+      {{authenticationService.loggedUser.username}}
+    </a>
+
+    <a routerLink="/topic/new" [routerLinkActive]="'activeLink'"
+       class="btn btn-default menuLink" *ngIf="authenticationService.hasAdminRole()">
+      <span class="fa fa-plus"></span> Add Topic
+    </a>
+
+    <div class="authenticationButton">
+      <a class="dashboardLink" *ngIf="authenticationService.loggedUser">
+        <button pButton label="Logout" icon="fa fa-sign-out" type="button" (click)="logout()"></button>
+      </a>
+
+      <a routerLink="login" class="dashboardLink" *ngIf="!authenticationService.loggedUser">
+        <button pButton label="Log in" icon="fa fa-sign-in" type="button"></button>
+      </a>
+      <a routerLink="registration" *ngIf="!authenticationService.loggedUser" class="dashboardLink">
+        <button pButton label="Registration" icon="fa fa-user-plus" type="button"></button>
+      </a>
+    </div>
+
+  </p-menubar>
+</div>
 
 <router-outlet></router-outlet>
