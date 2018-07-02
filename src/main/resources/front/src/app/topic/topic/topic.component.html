@@ -45,7 +45,7 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
 
       <tr>
-        <td *ngFor="let col of columns">
+        <td *ngFor="let col of columns" [ngClass]="getColorStyle(rowData, col)">
           {{getEvidenceValue(rowData, col)}}
         </td>
       </tr>

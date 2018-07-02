@@ -232,3 +232,18 @@ body {
   float: right;
   margin-top: 4px;
 }
+
+
+/*table colors*/
+.veryGoodCell {
+  background-color: #1BC700 !important;
+}
+.goodCell {
+  background-color: #009926 !important;
+}
+.badCell {
+  background-color: #ed4949 !important;
+}
+.varyBadCell {
+  background-color: #B40000 !important;
+}

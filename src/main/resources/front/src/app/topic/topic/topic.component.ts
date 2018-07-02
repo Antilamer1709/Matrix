@@ -100,4 +100,35 @@ export class TopicComponent extends CommonComponent implements OnInit {
     ];
   }
 
+  private getColorStyle(rowData, col): string {
+    let field = this.getFieldValue(rowData, col);
+    switch (field) {
+      case "0": {
+        return null;
+      }
+      case "++": {
+        return 'veryGoodCell';
+      }
+      case "+": {
+        return 'goodCell';
+      }
+      case "-": {
+        return 'badCell';
+      }
+      case "--": {
+        return 'varyBadCell';
+      }
+      default: {
+        return null
+      }
+    }
+  }
+  private getFieldValue(rowData, col): string {
+    if (isNaN(Number(col.field))) {
+      return rowData[col.field]
+    } else {
+      return rowData.hypotheses[col.field];
+    }
+  }
+
 }
