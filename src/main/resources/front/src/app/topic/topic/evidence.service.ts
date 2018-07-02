@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {EvidenceDTO} from "../topic-model";
+import {EvidenceDTO, TopicDTO} from "../topic-model";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 import {ResponseDTO, SearchDTO} from "../../common/common-model";
@@ -42,6 +42,10 @@ export class EvidenceService {
 
   createEvidence(evidence: EvidenceDTO): Observable<any> {
     return this.http.post('/api/evidence/create', evidence);
+  }
+
+  getEvidence(id: number): Observable<EvidenceDTO> {
+    return this.http.get<EvidenceDTO>('/api/evidence/getEvidence/' + id);
   }
 
 }

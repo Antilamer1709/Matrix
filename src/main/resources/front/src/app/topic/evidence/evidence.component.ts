@@ -57,6 +57,12 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
     this.evidence = new EvidenceDTO();
     this.evidence.hypotheses = {};
     this.evidence.topicId = this.topicId;
+
+    if (this.evidenceId != 'new') {
+      this.evidenceService.getEvidence(Number(this.evidenceId)).subscribe(res => {
+        this.evidence = res;
+      })
+    }
   }
 
   public submit(form: FormGroup): void {
@@ -79,7 +85,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
   }
 
   public getSupportModel(index): any {
-    // return this.suppotOptions[index + 1].value;
+    return this.evidence.hypotheses[index];
   }
 
   public onSupportChange(event, index): any {

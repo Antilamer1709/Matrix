@@ -2,7 +2,9 @@ package com.innovationPassport.matrix.controller;
 
 import com.innovationPassport.matrix.dto.EvidenceDTO;
 import com.innovationPassport.matrix.dto.SearchDTO;
+import com.innovationPassport.matrix.dto.TopicDTO;
 import com.innovationPassport.matrix.dto.response.ResponseDTO;
+import com.innovationPassport.matrix.exception.ValidationException;
 import com.innovationPassport.matrix.service.EvidenceBO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,12 @@ public class EvidenceCotroller {
     public void create(@RequestBody EvidenceDTO evidenceDTO) {
         log.debug("*** create() evidenceDTO: " + evidenceDTO);
         evidenceBO.create(evidenceDTO);
+    }
+
+    @GetMapping(value = "/getEvidence/{id}")
+    public EvidenceDTO getEvidence(@PathVariable Integer id) throws ValidationException {
+        log.debug("*** getEvidence() id: " + id);
+        return evidenceBO.getEvidence(id);
     }
 
 }

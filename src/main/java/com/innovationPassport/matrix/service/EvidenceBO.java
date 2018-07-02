@@ -3,6 +3,7 @@ package com.innovationPassport.matrix.service;
 import com.innovationPassport.matrix.dto.EvidenceDTO;
 import com.innovationPassport.matrix.dto.SearchDTO;
 import com.innovationPassport.matrix.dto.response.ResponseDTO;
+import com.innovationPassport.matrix.exception.ValidationException;
 import com.innovationPassport.matrix.model.EvidenceEntity;
 import com.innovationPassport.matrix.model.EvidenceHypotheseEntity;
 import com.innovationPassport.matrix.model.TopicEntity;
@@ -69,5 +70,18 @@ public class EvidenceBO {
 
             evidenceHypotheseRepo.save(evidenceHypotheseEntity);
         });
+    }
+
+    @Transactional
+    public EvidenceDTO getEvidence(Integer id) throws ValidationException {
+        EvidenceEntity evidenceEntity = evidenceRepo.findOne(id);
+
+        if (evidenceEntity == null) {
+            throw new ValidationException("There no evidence with id: " + id);
+        }
+        EvidenceDTO evidenceDTO = new EvidenceDTO(evidenceEntity);
+        evidenceDTO.setTopicId(evidenceEntity.getTopic().getId());
+
+        return evidenceDTO;
     }
 }
