@@ -88,6 +88,18 @@ export class TopicComponent extends CommonComponent implements OnInit {
     });
   }
 
+  public getSortableColumn(field) {
+    if (isNaN(Number(field))) {
+      return field;
+    } else {
+      return false;
+    }
+  }
+
+  public showSortIcon(field): boolean {
+    return isNaN(Number(field));
+  }
+
   public addEvidence(): void {
     this.router.navigate(['topic/' + this.topicId + '/evidence/new']);
   }

@@ -1,7 +1,7 @@
 <div class="evidenceTableContainer">
 
   <p-table #dt [columns]="cols" [value]="data" [lazy]="true" (onLazyLoad)="loadEvidences($event)" [paginator]="true"
-           [rows]="15" [totalRecords]="totalRecords" [loading]="loading">
+           [rows]="15" [totalRecords]="totalRecords" [loading]="loading" [customSort]="true">
 
     <ng-template pTemplate="caption">
 
@@ -14,8 +14,9 @@
     <ng-template pTemplate="header" let-columns>
 
       <tr>
-        <th *ngFor="let col of columns">
+        <th *ngFor="let col of columns" [pSortableColumn]="getSortableColumn(col.field)">
           {{getHeaderValue(col)}}
+          <p-sortIcon [field]="col.field" *ngIf="showSortIcon(col.field)"></p-sortIcon>
         </th>
       </tr>
 
