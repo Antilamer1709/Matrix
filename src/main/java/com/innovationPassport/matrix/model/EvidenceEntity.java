@@ -38,4 +38,7 @@ public class EvidenceEntity {
     @Fetch(FetchMode.SUBSELECT)
     private List<EvidenceHypotheseEntity> evidenceHypotheses;
 
+    @OneToMany(mappedBy = "evidence", fetch = FetchType.LAZY)
+    private List<EvidenceCommentEntity> comments;
+
 }

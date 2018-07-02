@@ -3,7 +3,9 @@ package com.innovationPassport.matrix.dto;
 import com.innovationPassport.matrix.model.EvidenceEntity;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -23,16 +25,20 @@ public class EvidenceDTO {
 
     private UserDTO creator;
 
+    private List<EvidenceCommentDTO> comments;
+
     public EvidenceDTO() {
+        this.hypotheses = new HashMap<>();
+        this.comments = new ArrayList<>();
     }
 
     public EvidenceDTO(EvidenceEntity entity) {
+        this();
         this.id = entity.getId();
         this.evidence = entity.getEvidence();
         this.source = entity.getSource();
         this.credibility = entity.getCredibility();
 
-        this.hypotheses = new HashMap<>();
         entity.getEvidenceHypotheses().forEach(x -> this.hypotheses.put(x.getPosition(), x.getValue()));
     }
 }

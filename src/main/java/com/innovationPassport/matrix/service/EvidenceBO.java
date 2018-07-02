@@ -11,6 +11,7 @@ import com.innovationPassport.matrix.repository.EvidenceCommentRepo;
 import com.innovationPassport.matrix.repository.EvidenceHypotheseRepo;
 import com.innovationPassport.matrix.repository.EvidenceRepo;
 import com.innovationPassport.matrix.repository.TopicRepo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -99,7 +100,19 @@ public class EvidenceBO {
         evidenceDTO.setTopicId(evidenceEntity.getTopic().getId());
         evidenceDTO.setCreator(new UserDTO(evidenceEntity.getUser()));
 
+        initEvidenceComments(evidenceDTO, evidenceEntity);
+
         return evidenceDTO;
+    }
+
+    private void initEvidenceComments(EvidenceDTO evidenceDTO, EvidenceEntity evidenceEntity) {
+        evidenceEntity.getComments().forEach(x -> {
+            EvidenceCommentDTO commentDTO = new EvidenceCommentDTO();
+            BeanUtils.copyProperties(x, commentDTO);
+            commentDTO.setUser(new UserDTO(x.getUser()));
+
+            evidenceDTO.getComments().add(commentDTO);
+        });
     }
 
     @Transactional

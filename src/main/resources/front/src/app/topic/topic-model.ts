@@ -15,6 +15,7 @@ export class EvidenceDTO {
   credibility: string;
   hypotheses: { [key: number]: string; };
   creator: UserDTO;
+  comments: EvidenceCommentDTO[];
 }
 
 

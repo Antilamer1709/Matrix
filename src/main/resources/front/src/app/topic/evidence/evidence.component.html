@@ -77,14 +77,12 @@
 
     <div *ngIf="evidenceId != 'new'">
 
-      <!--<div *ngFor="let comment of post.comments" class="commentBody">-->
-      <div class="commentBody">
+      <div *ngFor="let comment of evidence.comments" class="commentBody">
         <div class="commentHeader">
-          <!--<h6 style="margin: 0">{{comment.user.username}} {{comment.creationDate | date: 'dd/MM/yyyy'}}</h6>-->
-          <h6 style="margin: 0">username</h6>
+          <h6 style="margin: 0">{{comment.user.firstName + " " + comment.user.lastName + " (" + comment.user.username + ")"}}</h6>
         </div>
 
-        <div [innerHTML]="commentDTO.comment" class="commentText"></div>
+        <div [innerHTML]="comment.comment" class="commentText"></div>
       </div>
 
       <form *ngIf="authenticationService.loggedUser" #form="ngForm" (ngSubmit)="addComment(form)">
