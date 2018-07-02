@@ -84,12 +84,12 @@
           <h6 style="margin: 0">username</h6>
         </div>
 
-        <div [innerHTML]="comment" class="commentText"></div>
+        <div [innerHTML]="commentDTO.comment" class="commentText"></div>
       </div>
 
       <form *ngIf="authenticationService.loggedUser" #form="ngForm" (ngSubmit)="addComment(form)">
         <div class="addComment">
-          <p-editor [(ngModel)]="comment" [style]="{'height':'200px'}" name="addComment"></p-editor>
+          <p-editor [(ngModel)]="commentDTO.comment" [style]="{'height':'200px'}" name="addComment"></p-editor>
           <div class="form-group evidenceSave">
             <button pButton label="Add comment" icon="fa fa-paper-plane" type="submit"></button>
           </div>

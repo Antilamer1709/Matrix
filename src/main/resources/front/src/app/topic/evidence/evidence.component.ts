@@ -4,7 +4,7 @@ import {AuthenticationService} from "../../authentication/authentication.service
 import {ActivatedRoute, Params} from "@angular/router";
 import {TopicService} from "../topic.service";
 import {EvidenceService} from "../topic/evidence.service";
-import {EvidenceDTO, TopicDTO} from "../topic-model";
+import {EvidenceCommentDTO, EvidenceDTO, TopicDTO} from "../topic-model";
 import {CommonComponent} from "../../common/common-component";
 import {SelectItem} from "primeng/api";
 import {MessageService} from "primeng/components/common/messageservice";
@@ -16,7 +16,7 @@ import {MessageService} from "primeng/components/common/messageservice";
 })
 export class EvidenceComponent extends CommonComponent implements OnInit {
 
-  comment: string = "";
+  commentDTO: EvidenceCommentDTO;
 
   disabled: boolean = false;
   topicId: number;
@@ -57,6 +57,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
     this.evidence = new EvidenceDTO();
     this.evidence.hypotheses = {};
     this.evidence.topicId = this.topicId;
+    this.commentDTO = new EvidenceCommentDTO();
 
     if (this.evidenceId != 'new') {
       this.evidenceService.getEvidence(Number(this.evidenceId)).subscribe(res => {
@@ -91,7 +92,18 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
   }
 
   public addComment(form: FormGroup): void {
-
+    this.commentDTO.evidenceId = Number(this.evidenceId);
+    if (this.commentDTO.comment.trim().length > 0) {
+      this.evidenceService.addComment(this.commentDTO).subscribe(
+        (res) => {
+          console.log(res);
+          this.initEvidence();
+          this.messageService.add({severity:'info', summary:'Success', detail:'Comment has been added!'});
+        }
+      );
+    } else {
+      this.messageService.add({severity:'error', summary:'Error', detail:'Please, fill all fields in correct way!'});
+    }
   }
 
   public getSupportModel(index): any {

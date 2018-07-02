@@ -16,3 +16,11 @@ export class EvidenceDTO {
   hypotheses: { [key: number]: string; };
   creator: UserDTO;
 }
+
+
+export class EvidenceCommentDTO {
+  id: number;
+  evidenceId: number;
+  comment: string;
+  user: UserDTO;
+}

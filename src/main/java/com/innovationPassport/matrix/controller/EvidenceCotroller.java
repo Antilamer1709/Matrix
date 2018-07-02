@@ -1,5 +1,6 @@
 package com.innovationPassport.matrix.controller;
 
+import com.innovationPassport.matrix.dto.EvidenceCommentDTO;
 import com.innovationPassport.matrix.dto.EvidenceDTO;
 import com.innovationPassport.matrix.dto.SearchDTO;
 import com.innovationPassport.matrix.dto.TopicDTO;
@@ -49,6 +50,14 @@ public class EvidenceCotroller {
     public EvidenceDTO getEvidence(@PathVariable Integer id) throws ValidationException {
         log.debug("*** getEvidence() id: " + id);
         return evidenceBO.getEvidence(id);
+    }
+
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    @PostMapping(value = "/addComment")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addComment(@RequestBody EvidenceCommentDTO commentDTO) {
+        log.debug("*** addComment() commentDTO: " + commentDTO);
+        evidenceBO.addComment(commentDTO);
     }
 
 }

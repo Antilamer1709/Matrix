@@ -1,14 +1,13 @@
 package com.innovationPassport.matrix.service;
 
+import com.innovationPassport.matrix.dto.EvidenceCommentDTO;
 import com.innovationPassport.matrix.dto.EvidenceDTO;
 import com.innovationPassport.matrix.dto.SearchDTO;
 import com.innovationPassport.matrix.dto.UserDTO;
 import com.innovationPassport.matrix.dto.response.ResponseDTO;
 import com.innovationPassport.matrix.exception.ValidationException;
-import com.innovationPassport.matrix.model.EvidenceEntity;
-import com.innovationPassport.matrix.model.EvidenceHypotheseEntity;
-import com.innovationPassport.matrix.model.TopicEntity;
-import com.innovationPassport.matrix.model.UserEntity;
+import com.innovationPassport.matrix.model.*;
+import com.innovationPassport.matrix.repository.EvidenceCommentRepo;
 import com.innovationPassport.matrix.repository.EvidenceHypotheseRepo;
 import com.innovationPassport.matrix.repository.EvidenceRepo;
 import com.innovationPassport.matrix.repository.TopicRepo;
@@ -31,6 +30,9 @@ public class EvidenceBO {
 
     @Autowired
     private EvidenceHypotheseRepo evidenceHypotheseRepo;
+
+    @Autowired
+    private EvidenceCommentRepo evidenceCommentRepo;
 
     @Autowired
     private AuthenticationBO authenticationBO;
@@ -98,5 +100,21 @@ public class EvidenceBO {
         evidenceDTO.setCreator(new UserDTO(evidenceEntity.getUser()));
 
         return evidenceDTO;
+    }
+
+    @Transactional
+    public void addComment(EvidenceCommentDTO commentDTO) {
+        EvidenceCommentEntity commentEntity = new EvidenceCommentEntity();
+        initComment(commentEntity, commentDTO);
+        evidenceCommentRepo.save(commentEntity);
+    }
+
+    private void initComment(EvidenceCommentEntity commentEntity, EvidenceCommentDTO commentDTO) {
+        EvidenceEntity evidenceEntity = evidenceRepo.findOne(commentDTO.getEvidenceId());
+        UserEntity userEntity = authenticationBO.getLoggedUser();
+
+        commentEntity.setUser(userEntity);
+        commentEntity.setEvidence(evidenceEntity);
+        commentEntity.setComment(commentDTO.getComment());
     }
 }
