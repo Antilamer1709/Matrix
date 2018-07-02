@@ -127,6 +127,11 @@ body {
   top: 10%;
 }
 
+.ui-float-label > label[class="evidenceLabel"] {
+  top: -0.5em;
+  left: 0em;
+}
+
 .ui-float-label > label[class="topicHypotheseNameLabel"] {
   top: -50%;
   left: 0;
