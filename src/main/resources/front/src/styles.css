@@ -204,6 +204,7 @@ body {
 
 .dashboardLink {
   text-decoration: none !important;
+  margin-right: 5px;
 }
 
 .ui-menuitem.ui-widget.ui-corner-all {
