@@ -34,7 +34,6 @@ export class AuthenticationService extends CommonService {
     } else {
       return this.loggedUser.roles.indexOf('ROLE_ADMIN') > -1;
     }
-
   }
 
 }
