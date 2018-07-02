@@ -21,7 +21,7 @@ import {ButtonModule} from "primeng/button";
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot( routes ),
+    RouterModule.forRoot( routes, { useHash: true } ),
     AuthenticationModule,
     GrowlModule,
     TopicModule,
