@@ -44,6 +44,10 @@ export class EvidenceService {
     return this.http.post('/api/evidence/create', evidence);
   }
 
+  editEvidence(evidence: EvidenceDTO): Observable<any> {
+    return this.http.post('/api/evidence/edit', evidence);
+  }
+
   getEvidence(id: number): Observable<EvidenceDTO> {
     return this.http.get<EvidenceDTO>('/api/evidence/getEvidence/' + id);
   }

@@ -74,6 +74,19 @@ public class EvidenceBO {
     }
 
     @Transactional
+    public void edit(EvidenceDTO evidenceDTO) {
+        EvidenceEntity evidenceEntity = evidenceRepo.findOne(evidenceDTO.getId());
+        initEvidenceEntity(evidenceEntity, evidenceDTO);
+        evidenceRepo.save(evidenceEntity);
+        deleteOldHypotheseValues(evidenceEntity);
+        createHypotheseValues(evidenceEntity, evidenceDTO);
+    }
+
+    private void deleteOldHypotheseValues(EvidenceEntity evidenceEntity) {
+        evidenceHypotheseRepo.delete(evidenceEntity.getEvidenceHypotheses());
+    }
+
+    @Transactional
     public EvidenceDTO getEvidence(Integer id) throws ValidationException {
         EvidenceEntity evidenceEntity = evidenceRepo.findOne(id);
 

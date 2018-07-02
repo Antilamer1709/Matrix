@@ -61,6 +61,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
     if (this.evidenceId != 'new') {
       this.evidenceService.getEvidence(Number(this.evidenceId)).subscribe(res => {
         this.evidence = res;
+        this.disabled = true;
       })
     }
   }
@@ -69,12 +70,21 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
     console.log(this.evidence);
 
     if (form.valid) {
-      this.evidenceService.createEvidence(this.evidence).subscribe(
-        (res) => {
-          console.log(res);
-          this.messageService.add({severity:'info', summary:'Success', detail:'Evidence has been created!'});
-        }
-      );
+      if (this.evidenceId != 'new') {
+        this.evidenceService.editEvidence(this.evidence).subscribe(
+          (res) => {
+            console.log(res);
+            this.messageService.add({severity:'info', summary:'Success', detail:'Evidence has been edited!'});
+          }
+        );
+      } else {
+        this.evidenceService.createEvidence(this.evidence).subscribe(
+          (res) => {
+            console.log(res);
+            this.messageService.add({severity:'info', summary:'Success', detail:'Evidence has been created!'});
+          }
+        );
+      }
     } else {
       this.messageService.add({severity:'error', summary:'Error', detail:'Please, fill all fields in correct way!'});
     }
@@ -90,6 +100,20 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
 
   public onSupportChange(event, index): any {
     this.evidence.hypotheses[index] = event.value;
+  }
+
+  public isEditButtonVisible(): boolean {
+    if (!this.disabled) {
+      return false;
+    }
+
+    if (this.evidence.creator.id === this.authenticationService.loggedUser.id) {
+      return true;
+    }
+  }
+
+  public onEditClick(): void {
+    this.disabled = false;
   }
 
 }

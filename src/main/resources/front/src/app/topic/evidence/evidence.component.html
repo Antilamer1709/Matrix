@@ -58,7 +58,8 @@
         </div>
 
         <div style="float: right;">
-          <button pButton label="Save" icon="fa fa-paper-plane" type="submit"></button>
+          <button *ngIf="!disabled" pButton label="Save" icon="fa fa-paper-plane" type="submit"></button>
+          <button *ngIf="isEditButtonVisible()" (click)="onEditClick()" pButton label="Edit" icon="fa fa-paper-plane" type="button"></button>
         </div>
 
         <!--fix for float above element-->
@@ -69,8 +70,7 @@
     </div>
 
     <div class="row" style="margin-right: 0; margin-left: 20px; margin-bottom: 5px" *ngIf="evidenceId != 'new'">
-      <div class="evidenceCreatorSignature">
-        <!--{{username}} {{post | date: 'dd/MM/yyyy'}}-->
+      <div class="evidenceCreatorSignature" *ngIf="evidence && evidence.creator">
         {{evidence.creator.firstName + " " + evidence.creator.lastName + " (" + evidence.creator.username + ")"}}
       </div>
     </div>

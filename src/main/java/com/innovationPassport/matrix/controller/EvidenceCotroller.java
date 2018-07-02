@@ -37,6 +37,14 @@ public class EvidenceCotroller {
         evidenceBO.create(evidenceDTO);
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    @PostMapping(value = "/edit")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void edit(@RequestBody EvidenceDTO evidenceDTO) {
+        log.debug("*** edit() evidenceDTO: " + evidenceDTO);
+        evidenceBO.edit(evidenceDTO);
+    }
+
     @GetMapping(value = "/getEvidence/{id}")
     public EvidenceDTO getEvidence(@PathVariable Integer id) throws ValidationException {
         log.debug("*** getEvidence() id: " + id);
