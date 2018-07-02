@@ -8,6 +8,7 @@ import com.innovationPassport.matrix.model.RoleEntity;
 import com.innovationPassport.matrix.model.UserEntity;
 import com.innovationPassport.matrix.repository.RoleRepo;
 import com.innovationPassport.matrix.repository.UserRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 
+@Slf4j
 @Service
 public class AuthenticationBO {
 
@@ -42,8 +44,10 @@ public class AuthenticationBO {
         if (user != null) {
             UserDTO userDTO = new UserDTO(user);
             user.getRoles().forEach(x -> userDTO.getRoles().add(x.getCode()));
+            log.debug("*** getLoggedUserDTO() userDTO: " + userDTO);
             return userDTO;
         } else {
+            log.debug("*** getLoggedUserDTO() userDTO: anonymous");
             return new UserDTO();
         }
     }
