@@ -48,7 +48,7 @@ public class AuthenticationBO {
             return userDTO;
         } else {
             log.debug("*** getLoggedUserDTO() userDTO: anonymous");
-            return new UserDTO();
+            return null;
         }
     }
 
