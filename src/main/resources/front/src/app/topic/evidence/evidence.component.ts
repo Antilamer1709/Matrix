@@ -93,7 +93,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
 
   public addComment(form: FormGroup): void {
     this.commentDTO.evidenceId = Number(this.evidenceId);
-    if (this.commentDTO.comment.trim().length > 0) {
+    if (this.commentDTO && this.commentDTO.comment && this.commentDTO.comment.trim().length > 0) {
       this.evidenceService.addComment(this.commentDTO).subscribe(
         (res) => {
           console.log(res);
