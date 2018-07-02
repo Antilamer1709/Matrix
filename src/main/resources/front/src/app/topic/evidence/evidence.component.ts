@@ -119,7 +119,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
       return false;
     }
 
-    if (this.authenticationService.loggedUser && this.evidence.creator.id === this.authenticationService.loggedUser.id) {
+    if (this.authenticationService.loggedUser && this.evidence && this.evidence.creator.id === this.authenticationService.loggedUser.id) {
       return true;
     }
   }
