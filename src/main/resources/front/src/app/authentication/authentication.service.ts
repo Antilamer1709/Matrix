@@ -29,7 +29,7 @@ export class AuthenticationService extends CommonService {
   }
 
   public hasAdminRole(): boolean {
-    if (!this.loggedUser) {
+    if (!this.loggedUser || !this.loggedUser.roles) {
       return false;
     } else {
       return this.loggedUser.roles.indexOf('ROLE_ADMIN') > -1;
