@@ -255,3 +255,13 @@ body {
 .normalCell {
   background-color: #d6d4d4 !important;
 }
+
+a.profileLink {
+  color: #1e1e21;
+}
+a:hover.profileLink {
+  color: #1f7db7;
+  text-decoration: none;
+}
+a:visited.profileLink {
+}

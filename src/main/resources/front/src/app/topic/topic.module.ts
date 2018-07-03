@@ -10,6 +10,7 @@ import {ButtonModule} from "primeng/button";
 import {TableModule} from "primeng/table";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { EvidenceComponent } from './evidence/evidence.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { EvidenceComponent } from './evidence/evidence.component';
     DropdownModule,
     BrowserAnimationsModule,
     EditorModule,
-    PaginatorModule
+    PaginatorModule,
+    RouterModule
   ],
   declarations: [TopicListComponent, TopicCardComponent, TopicComponent, NewTopicComponent, EvidenceComponent]
 })
