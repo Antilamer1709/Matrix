@@ -37,7 +37,6 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
 
   ngOnInit() {
     this.initRouteParams();
-    this.initTopic();
     this.initEvidence();
     this.initDicts();
     this.initComments();
@@ -47,7 +46,8 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.topicId = params['id'];
       this.evidenceId = params['evidenceId'];
-      console.log(this.evidenceId)
+      console.log(this.evidenceId);
+      this.initTopic();
     });
   }
 
