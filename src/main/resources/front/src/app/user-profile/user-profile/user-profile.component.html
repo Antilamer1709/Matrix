@@ -11,7 +11,40 @@
 
     <div class="evidenceContent" style="padding-top: 30px">
 
+      <p-table #dt [columns]="cols" [value]="data" [lazy]="true" (onLazyLoad)="loadEvidences($event)" [paginator]="true"
+               [rows]="15" [totalRecords]="totalRecords" [loading]="loading" [customSort]="true"
+               selectionMode="single" (onRowSelect)="onRowSelect($event)">
 
+        <ng-template pTemplate="header" let-columns>
+
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+          </tr>
+
+          <tr>
+            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+              <input *ngSwitchCase="'evidence'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <input *ngSwitchCase="'source'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+              <p-dropdown *ngSwitchCase="'credibility'" [options]="credibilityOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>
+            </th>
+          </tr>
+
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+
+          <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+            </td>
+          </tr>
+
+        </ng-template>
+
+      </p-table>
 
     </div>
 
