@@ -52,7 +52,7 @@ public class TopicBO {
         TopicEntity topicEntity = topicRepo.getOne(id);
 
         if (topicEntity == null) {
-            throw new ValidationException("There no topic with id: " + id);
+            throw new ValidationException("There is no topic with id: " + id);
         }
         TopicDTO topicDTO = new TopicDTO(topicEntity);
         topicDTO.setHypotheses(topicEntity.getHypotheses().stream().map(TpoicHypotheseEntity::getHypothese).collect(Collectors.toList()));

@@ -94,7 +94,7 @@ public class EvidenceBO {
         EvidenceEntity evidenceEntity = evidenceRepo.findOne(id);
 
         if (evidenceEntity == null) {
-            throw new ValidationException("There no evidence with id: " + id);
+            throw new ValidationException("There is no evidence with id: " + id);
         }
         EvidenceDTO evidenceDTO = new EvidenceDTO(evidenceEntity);
         evidenceDTO.setTopicId(evidenceEntity.getTopic().getId());
