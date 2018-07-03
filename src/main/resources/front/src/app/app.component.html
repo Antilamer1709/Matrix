@@ -13,6 +13,11 @@
       {{authenticationService.loggedUser.username}}
     </a>
 
+    <a routerLink="topic" [routerLinkActive]="'activeLink'" [routerLinkActiveOptions]="{exact:true}"
+       class="btn btn-default menuLink">
+      <span class="fa fa-th-list"></span> Topics
+    </a>
+
     <a routerLink="/topic/new" [routerLinkActive]="'activeLink'"
        class="btn btn-default menuLink" *ngIf="authenticationService.hasAdminRole()">
       <span class="fa fa-plus"></span> Add Topic
