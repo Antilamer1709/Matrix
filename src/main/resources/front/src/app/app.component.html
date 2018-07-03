@@ -8,7 +8,7 @@
       <img src="assets/images/forum.png" class="forumImage">
     </a>
 
-    <a routerLink="/profile/{{authenticationService.loggedUser.username}}" [routerLinkActive]="'activeLink'"
+    <a routerLink="/user/{{authenticationService.loggedUser.id}}" [routerLinkActive]="'activeLink'"
        class="btn btn-default menuLink" *ngIf="authenticationService.loggedUser">
       {{authenticationService.loggedUser.username}}
     </a>

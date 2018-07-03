@@ -13,6 +13,7 @@ import {TopicModule} from "./topic/topic.module";
 import {BlockUIModule} from "primeng/blockui";
 import {MenubarModule} from "primeng/menubar";
 import {ButtonModule} from "primeng/button";
+import {UserProfileModule} from "./user-profile/user-profile.module";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ButtonModule} from "primeng/button";
     TopicModule,
     BlockUIModule,
     MenubarModule,
-    ButtonModule
+    ButtonModule,
+    UserProfileModule
   ],
   providers: [
     MessageService,
