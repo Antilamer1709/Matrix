@@ -47,7 +47,7 @@ public class EvidenceBO {
     }
 
     private EvidenceDTO createEvidenceDTO(EvidenceEntity entity) {
-        EvidenceDTO evidenceDTO = new EvidenceDTO();
+        EvidenceDTO evidenceDTO = new EvidenceDTO(entity);
         entity.getEvidenceHypotheses().forEach(x -> evidenceDTO.getHypotheses().put(x.getPosition(), x.getValue()));
         return evidenceDTO;
     }
