@@ -1,6 +1,5 @@
 package com.innovationPassport.matrix.service;
 
-import com.innovationPassport.matrix.dto.EvidenceDTO;
 import com.innovationPassport.matrix.dto.TopicDTO;
 import com.innovationPassport.matrix.exception.ValidationException;
 import com.innovationPassport.matrix.model.TopicEntity;
