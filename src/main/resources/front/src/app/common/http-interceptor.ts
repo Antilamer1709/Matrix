@@ -9,10 +9,13 @@ import {Injectable, Injector} from "@angular/core";
 import {MessageService} from "primeng/components/common/messageservice";
 import {Observable} from "rxjs/internal/Observable";
 import {finalize, tap} from "rxjs/operators";
+import {AppService} from "../app.service";
 
 @Injectable()
 export class CustomHttpInterceptor implements HttpInterceptor {
+
   messageService: MessageService;
+  appService: AppService;
 
   constructor(
     private injector: Injector
@@ -26,6 +29,8 @@ export class CustomHttpInterceptor implements HttpInterceptor {
 
     if (!this.messageService)
       this.messageService = this.injector.get(MessageService); // get it here within intercept
+    if (!this.appService)
+      this.appService = this.injector.get(AppService);
 
     return next.handle(request)
       .pipe(
@@ -41,6 +46,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
         // Log when response observable either completes or errors
         finalize(() => {
           if (ok === 'failed') {
+            this.appService.blockedUI = false;
             if (response.status === 401) {
               this.messageService.add({severity: 'error', summary: 'Error', detail: 'Authentication failed!'});
             } else if (response.status === 403) {
