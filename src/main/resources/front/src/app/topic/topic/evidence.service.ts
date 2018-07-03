@@ -13,16 +13,12 @@ export class EvidenceService {
   constructor(private http: HttpClient) { }
 
   getEvidences(topicId: number, event: LazyLoadEvent): Observable<ResponseDTO<EvidenceDTO[]>> {
-    let searchDTO = this.createSearchDTO(topicId, event);
+    let searchDTO = this.createSearchEvidenceDTO(topicId, event);
     return this.http.post<ResponseDTO<EvidenceDTO[]>>('/api/evidence/search', searchDTO);
   }
 
-  private createSearchDTO(topicId: number, event: LazyLoadEvent): SearchDTO<EvidenceDTO> {
-    let searchDTO = new SearchDTO<EvidenceDTO>();
-    searchDTO.first = event.first;
-    searchDTO.rows = event.rows;
-    searchDTO.sortField = event.sortField;
-    searchDTO.sortOrder = event.sortOrder;
+  private createSearchEvidenceDTO(topicId: number, event: LazyLoadEvent): SearchDTO<EvidenceDTO> {
+    let searchDTO = this.createCommonSearchDTO<EvidenceDTO>(event);
 
     searchDTO.filter = new EvidenceDTO();
     searchDTO.filter.hypotheses = {};
@@ -36,6 +32,16 @@ export class EvidenceService {
         searchDTO.filter.hypotheses[field] = event.filters[field].value;
       }
     }
+
+    return searchDTO;
+  }
+
+  private createCommonSearchDTO<T>(event: LazyLoadEvent): SearchDTO<T> {
+    let searchDTO = new SearchDTO<T>();
+    searchDTO.first = event.first;
+    searchDTO.rows = event.rows;
+    searchDTO.sortField = event.sortField;
+    searchDTO.sortOrder = event.sortOrder;
 
     return searchDTO;
   }
@@ -56,9 +62,18 @@ export class EvidenceService {
     return this.http.post('/api/evidence/addComment', commentDTO);
   }
 
-  searchComments(topicId: number, event: LazyLoadEvent): Observable<ResponseDTO<EvidenceCommentDTO[]>> {
-    let searchDTO = this.createSearchDTO(topicId, event);
+  searchComments(evidenceId: number, event: LazyLoadEvent): Observable<ResponseDTO<EvidenceCommentDTO[]>> {
+    let searchDTO = this.createSearchCommentDTO(evidenceId, event);
     return this.http.post<ResponseDTO<EvidenceCommentDTO[]>>('/api/evidence/searchComments', searchDTO);
+  }
+
+  private createSearchCommentDTO(evidenceId: number, event: LazyLoadEvent): SearchDTO<EvidenceCommentDTO> {
+    let searchDTO = this.createCommonSearchDTO<EvidenceCommentDTO>(event);
+
+    searchDTO.filter = new EvidenceCommentDTO();
+    searchDTO.filter.evidenceId = searchDTO.id = evidenceId;
+
+    return searchDTO;
   }
 
 }

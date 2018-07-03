@@ -89,7 +89,7 @@
       </div>
 
       <div style="margin-bottom: 25px">
-        <p-paginator [rows]="5" [totalRecords]="totalCommentRecords" (onPageChange)="paginateComments($event)"></p-paginator>
+        <p-paginator [rows]="15" [totalRecords]="totalCommentRecords" (onPageChange)="paginateComments($event)"></p-paginator>
       </div>
 
       <form *ngIf="authenticationService.loggedUser" #form="ngForm" (ngSubmit)="addComment(form)">

@@ -14,6 +14,9 @@ public class EvidenceCommentRepoImpl extends AbstractPagedRepoImpl<EvidenceComme
             if (filter.getId() != null)
                 params.put("id", filter.getId());
 
+            if (filter.getEvidenceId() != null)
+                params.put("evidenceId", filter.getEvidenceId());
+
         }
     }
 
@@ -23,18 +26,21 @@ public class EvidenceCommentRepoImpl extends AbstractPagedRepoImpl<EvidenceComme
         if (filter.getId() != null)
             whereStatementBuilder.append(" AND  U.id = :id ");
 
+        if (filter.getEvidenceId() != null)
+            whereStatementBuilder.append(" AND  evidence.id = :evidenceId ");
+
         return whereStatementBuilder.toString();
     }
 
 
     @Override
     protected String getJoinForFetchStatement(EvidenceCommentDTO filter) {
-        return " ";
+        return " LEFT JOIN U.evidence evidence ";
     }
 
     @Override
     protected String getJoinForCountStatement(EvidenceCommentDTO filter) {
-        return " ";
+        return " LEFT JOIN U.evidence evidence ";
     }
 
 

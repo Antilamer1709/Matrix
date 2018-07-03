@@ -134,19 +134,21 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
   }
 
   private initComments(): void {
-    let event = {
-      first: 0,
-      page: 0,
-      rows: 5,
-      pageCount: 10
-    };
+    if (this.evidenceId != 'new') {
+      let event = {
+        first: 0,
+        page: 0,
+        rows: 15,
+        pageCount: 10
+      };
 
-    this.paginateComments(event);
+      this.paginateComments(event);
+    }
   }
 
   public paginateComments(event): void {
     console.log(event);
-    this.evidenceService.searchComments(this.topicId, event).subscribe(x => {
+    this.evidenceService.searchComments(Number(this.evidenceId), event).subscribe(x => {
       this.totalCommentRecords = x.totalElements;
       this.comments = x.data;
     });
