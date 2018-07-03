@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {AuthenticationService} from "../../authentication/authentication.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {TopicService} from "../topic.service";
 import {EvidenceService} from "../topic/evidence.service";
 import {EvidenceCommentDTO, EvidenceDTO, TopicDTO} from "../topic-model";
@@ -9,6 +9,7 @@ import {CommonComponent} from "../../common/common-component";
 import {SelectItem} from "primeng/api";
 import {MessageService} from "primeng/components/common/messageservice";
 import {v} from "@angular/core/src/render3";
+import {AppService} from "../../app.service";
 
 @Component({
   selector: 'app-evidence',
@@ -31,7 +32,9 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
               private messageService: MessageService,
               private topicService: TopicService,
               private evidenceService: EvidenceService,
-              private activatedRoute: ActivatedRoute) {
+              private appService: AppService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     super();
   }
 
@@ -75,21 +78,18 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
     console.log(this.evidence);
 
     if (form.valid) {
-      if (this.evidenceId != 'new') {
-        this.evidenceService.editEvidence(this.evidence).subscribe(
-          (res) => {
-            console.log(res);
-            this.messageService.add({severity:'info', summary:'Success', detail:'Evidence has been edited!'});
-          }
-        );
-      } else {
-        this.evidenceService.createEvidence(this.evidence).subscribe(
-          (res) => {
-            console.log(res);
-            this.messageService.add({severity:'info', summary:'Success', detail:'Evidence has been created!'});
-          }
-        );
-      }
+      this.appService.blockedUI = true;
+
+      this.evidenceService.saveEvidence(this.evidence, this.evidenceId != 'new').subscribe(
+        (res) => {
+          console.log(res);
+          this.appService.blockedUI = false;
+          this.messageService.add({severity:'info', summary:'Success',
+            detail: this.evidenceId != 'new' ? 'Evidence has been edited!' : 'Evidence has been created!'});
+          this.router.navigate(['/topic/' + this.topicId]);
+        }
+      );
+
     } else {
       this.messageService.add({severity:'error', summary:'Error', detail:'Please, fill all fields in correct way!'});
     }

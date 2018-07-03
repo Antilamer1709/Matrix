@@ -39,11 +39,19 @@ export class EvidenceService extends CommonService {
     return searchDTO;
   }
 
-  createEvidence(evidence: EvidenceDTO): Observable<any> {
+  saveEvidence(evidence: EvidenceDTO, isEdit: boolean): Observable<any> {
+    if (isEdit) {
+      return this.editEvidence(evidence);
+    } else {
+      return this.createEvidence(evidence);
+    }
+  }
+
+  private createEvidence(evidence: EvidenceDTO): Observable<any> {
     return this.http.post('/api/evidence/create', evidence);
   }
 
-  editEvidence(evidence: EvidenceDTO): Observable<any> {
+  private editEvidence(evidence: EvidenceDTO): Observable<any> {
     return this.http.post('/api/evidence/edit', evidence);
   }
 
