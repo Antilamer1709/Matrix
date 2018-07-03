@@ -42,8 +42,14 @@ public class EvidenceBO {
     public ResponseDTO<List<EvidenceDTO>> search(SearchDTO<EvidenceDTO> searchDTO) {
         Page<EvidenceEntity> page = evidenceRepo.getPagedData(searchDTO);
 
-        List<EvidenceDTO> content = page.getContent().stream().map(EvidenceDTO::new).collect(Collectors.toList());
+        List<EvidenceDTO> content = page.getContent().stream().map(this::createEvidenceDTO).collect(Collectors.toList());
         return new ResponseDTO<>(content, page.getTotalElements(), page.getTotalPages());
+    }
+
+    private EvidenceDTO createEvidenceDTO(EvidenceEntity entity) {
+        EvidenceDTO evidenceDTO = new EvidenceDTO();
+        entity.getEvidenceHypotheses().forEach(x -> evidenceDTO.getHypotheses().put(x.getPosition(), x.getValue()));
+        return evidenceDTO;
     }
 
     @Transactional
@@ -97,6 +103,7 @@ public class EvidenceBO {
             throw new ValidationException("There is no evidence with id: " + id);
         }
         EvidenceDTO evidenceDTO = new EvidenceDTO(evidenceEntity);
+        evidenceEntity.getEvidenceHypotheses().forEach(x -> evidenceDTO.getHypotheses().put(x.getPosition(), x.getValue()));
         evidenceDTO.setTopicId(evidenceEntity.getTopic().getId());
         evidenceDTO.setCreator(new UserDTO(evidenceEntity.getUser()));
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserDTO} from "../../authentication/authentication-model";
 import {MessageService} from "primeng/components/common/messageservice";
 import {UserProfileService} from "../user-profile.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {CommonComponent} from "../../common/common-component";
 import {EvidenceDTO} from "../../topic/topic-model";
 import {LazyLoadEvent} from "primeng/api";
@@ -24,7 +24,8 @@ export class UserProfileComponent extends CommonComponent implements OnInit {
 
   constructor(private messageService: MessageService,
               private userProfileService: UserProfileService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     super();
   }
 
@@ -60,7 +61,7 @@ export class UserProfileComponent extends CommonComponent implements OnInit {
   }
 
   public onRowSelect(event): void {
-    // this.router.navigate(['topic/' + this.topicId + '/evidence/' + event.data.id]);
+    this.router.navigate(['topic/' + event.data.topicId + '/evidence/' + event.data.id]);
   }
 
   private initColumns(): void {

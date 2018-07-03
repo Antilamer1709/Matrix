@@ -5,7 +5,6 @@ import com.innovationPassport.matrix.dto.SearchDTO;
 import com.innovationPassport.matrix.dto.UserDTO;
 import com.innovationPassport.matrix.dto.response.ResponseDTO;
 import com.innovationPassport.matrix.exception.ValidationException;
-import com.innovationPassport.matrix.service.EvidenceBO;
 import com.innovationPassport.matrix.service.UserBO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,6 @@ public class UserController {
     @Autowired
     private UserBO userBO;
 
-    @Autowired
-    private EvidenceBO evidenceBO;
-
 
     @GetMapping(value = "/getUser/{id}")
     public UserDTO getUser(@PathVariable Integer id) throws ValidationException {
@@ -34,7 +30,7 @@ public class UserController {
     @PostMapping(value = "/searchEvidence")
     public ResponseDTO<List<EvidenceDTO>> searchEvidence(@RequestBody SearchDTO<EvidenceDTO> searchDTO) {
         log.debug("*** searchEvidence() SearchDTO: " + searchDTO);
-        return evidenceBO.search(searchDTO);
+        return userBO.searchEvidence(searchDTO);
     }
 
 }

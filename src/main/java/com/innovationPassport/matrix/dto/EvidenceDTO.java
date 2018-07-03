@@ -40,7 +40,5 @@ public class EvidenceDTO {
         this.evidence = entity.getEvidence();
         this.source = entity.getSource();
         this.credibility = entity.getCredibility();
-
-        entity.getEvidenceHypotheses().forEach(x -> this.hypotheses.put(x.getPosition(), x.getValue()));
     }
 }
