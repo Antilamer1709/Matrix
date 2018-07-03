@@ -8,6 +8,7 @@ import {EvidenceCommentDTO, EvidenceDTO, TopicDTO} from "../topic-model";
 import {CommonComponent} from "../../common/common-component";
 import {SelectItem} from "primeng/api";
 import {MessageService} from "primeng/components/common/messageservice";
+import {v} from "@angular/core/src/render3";
 
 @Component({
   selector: 'app-evidence',
@@ -17,6 +18,8 @@ import {MessageService} from "primeng/components/common/messageservice";
 export class EvidenceComponent extends CommonComponent implements OnInit {
 
   commentDTO: EvidenceCommentDTO;
+  comments: EvidenceCommentDTO[];
+  totalCommentRecords: number;
 
   disabled: boolean = false;
   topicId: number;
@@ -37,6 +40,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
     this.initTopic();
     this.initEvidence();
     this.initDicts();
+    this.initComments();
   }
 
   private initRouteParams(): void {
@@ -127,6 +131,25 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
 
   public onEditClick(): void {
     this.disabled = false;
+  }
+
+  private initComments(): void {
+    let event = {
+      first: 0,
+      page: 0,
+      rows: 5,
+      pageCount: 10
+    };
+
+    this.paginateComments(event);
+  }
+
+  public paginateComments(event): void {
+    console.log(event);
+    this.evidenceService.searchComments(this.topicId, event).subscribe(x => {
+      this.totalCommentRecords = x.totalElements;
+      this.comments = x.data;
+    });
   }
 
 }

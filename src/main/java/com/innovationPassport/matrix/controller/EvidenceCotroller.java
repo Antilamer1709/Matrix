@@ -52,6 +52,12 @@ public class EvidenceCotroller {
         return evidenceBO.getEvidence(id);
     }
 
+    @PostMapping(value = "/searchComments")
+    public ResponseDTO<List<EvidenceCommentDTO>> searchComments(@RequestBody SearchDTO<EvidenceCommentDTO> searchDTO) {
+        log.debug("*** searchComments() SearchDTO: " + searchDTO);
+        return evidenceBO.searchComments(searchDTO);
+    }
+
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @PostMapping(value = "/addComment")
     @ResponseStatus(value = HttpStatus.OK)

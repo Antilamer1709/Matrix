@@ -56,4 +56,9 @@ export class EvidenceService {
     return this.http.post('/api/evidence/addComment', commentDTO);
   }
 
+  searchComments(topicId: number, event: LazyLoadEvent): Observable<ResponseDTO<EvidenceCommentDTO[]>> {
+    let searchDTO = this.createSearchDTO(topicId, event);
+    return this.http.post<ResponseDTO<EvidenceCommentDTO[]>>('/api/evidence/searchComments', searchDTO);
+  }
+
 }

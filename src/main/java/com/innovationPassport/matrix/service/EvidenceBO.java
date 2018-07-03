@@ -100,19 +100,7 @@ public class EvidenceBO {
         evidenceDTO.setTopicId(evidenceEntity.getTopic().getId());
         evidenceDTO.setCreator(new UserDTO(evidenceEntity.getUser()));
 
-        initEvidenceComments(evidenceDTO, evidenceEntity);
-
         return evidenceDTO;
-    }
-
-    private void initEvidenceComments(EvidenceDTO evidenceDTO, EvidenceEntity evidenceEntity) {
-        evidenceEntity.getComments().forEach(x -> {
-            EvidenceCommentDTO commentDTO = new EvidenceCommentDTO();
-            BeanUtils.copyProperties(x, commentDTO);
-            commentDTO.setUser(new UserDTO(x.getUser()));
-
-            evidenceDTO.getComments().add(commentDTO);
-        });
     }
 
     @Transactional
@@ -130,4 +118,21 @@ public class EvidenceBO {
         commentEntity.setEvidence(evidenceEntity);
         commentEntity.setComment(commentDTO.getComment());
     }
+
+    @Transactional
+    public ResponseDTO<List<EvidenceCommentDTO>> searchComments(SearchDTO<EvidenceCommentDTO> searchDTO) {
+        Page<EvidenceCommentEntity> page = evidenceCommentRepo.getPagedData(searchDTO);
+
+        List<EvidenceCommentDTO> content = page.getContent().stream().map(this::createCommentDTO).collect(Collectors.toList());
+        return new ResponseDTO<>(content, page.getTotalElements(), page.getTotalPages());
+    }
+
+    private EvidenceCommentDTO createCommentDTO(EvidenceCommentEntity commentEntity) {
+        EvidenceCommentDTO commentDTO = new EvidenceCommentDTO();
+        BeanUtils.copyProperties(commentEntity, commentDTO);
+        commentDTO.setUser(new UserDTO(commentEntity.getUser()));
+
+        return commentDTO;
+    }
+
 }

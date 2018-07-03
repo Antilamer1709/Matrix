@@ -79,13 +79,17 @@
 
     <div *ngIf="evidenceId != 'new'">
 
-      <div *ngFor="let comment of evidence.comments" class="commentBody">
+      <div *ngFor="let comment of comments" class="commentBody">
         <div class="commentHeader">
           <h6 style="margin: 0">{{comment.user.firstName + " " + comment.user.lastName + " (" + comment.user.username +
             ")"}}</h6>
         </div>
 
         <div [innerHTML]="comment.comment" class="commentText"></div>
+      </div>
+
+      <div style="margin-bottom: 25px">
+        <p-paginator [rows]="5" [totalRecords]="totalCommentRecords" (onPageChange)="paginateComments($event)"></p-paginator>
       </div>
 
       <form *ngIf="authenticationService.loggedUser" #form="ngForm" (ngSubmit)="addComment(form)">
