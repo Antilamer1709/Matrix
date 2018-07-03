@@ -113,7 +113,7 @@ export class TopicComponent extends CommonComponent implements OnInit {
     ];
   }
 
-  private getColorStyle(rowData, col): string {
+  public getColorStyle(rowData, col): string {
     let field = this.getFieldValue(rowData, col);
     switch (field) {
       case "0": {
