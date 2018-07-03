@@ -51,11 +51,11 @@ export class UserProfileComponent extends CommonComponent implements OnInit {
     setTimeout(() => {
       this.loading = true;
     });
-    // this.evidenceService.getEvidences(this.topicId, event).subscribe(x => {
-    //   this.loading = false;
-    //   this.totalRecords = x.totalElements;
-    //   this.data = x.data;
-    // });
+    this.userProfileService.getEvidences(this.userId, event).subscribe(x => {
+      this.loading = false;
+      this.totalRecords = x.totalElements;
+      this.data = x.data;
+    });
   }
 
   public onRowSelect(event): void {

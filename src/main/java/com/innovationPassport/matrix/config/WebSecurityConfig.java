@@ -68,6 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/evidence/search").permitAll()
                 .antMatchers("/api/evidence/searchComments").permitAll()
                 .antMatchers("/api/user/getUser/{id}").permitAll()
+                .antMatchers("/api/user/searchEvidence").permitAll()
                 .antMatchers("/index").permitAll()
                 .anyRequest().authenticated()
                 .and()

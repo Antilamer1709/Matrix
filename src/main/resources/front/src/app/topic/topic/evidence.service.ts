@@ -1,16 +1,19 @@
-import { Injectable } from '@angular/core';
-import {EvidenceCommentDTO, EvidenceDTO, TopicDTO} from "../topic-model";
+import {Injectable} from '@angular/core';
+import {EvidenceCommentDTO, EvidenceDTO} from "../topic-model";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 import {ResponseDTO, SearchDTO} from "../../common/common-model";
 import {LazyLoadEvent} from "primeng/api";
+import {CommonService} from "../../common/common.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class EvidenceService {
+export class EvidenceService extends CommonService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   getEvidences(topicId: number, event: LazyLoadEvent): Observable<ResponseDTO<EvidenceDTO[]>> {
     let searchDTO = this.createSearchEvidenceDTO(topicId, event);
@@ -22,7 +25,7 @@ export class EvidenceService {
 
     searchDTO.filter = new EvidenceDTO();
     searchDTO.filter.hypotheses = {};
-    searchDTO.filter.topicId = searchDTO.id = topicId;
+    searchDTO.filter.topicId = topicId;
 
     for (let field in event.filters) {
       if (isNaN(Number(field))) {
@@ -32,16 +35,6 @@ export class EvidenceService {
         searchDTO.filter.hypotheses[field] = event.filters[field].value;
       }
     }
-
-    return searchDTO;
-  }
-
-  private createCommonSearchDTO<T>(event: LazyLoadEvent): SearchDTO<T> {
-    let searchDTO = new SearchDTO<T>();
-    searchDTO.first = event.first;
-    searchDTO.rows = event.rows;
-    searchDTO.sortField = event.sortField;
-    searchDTO.sortOrder = event.sortOrder;
 
     return searchDTO;
   }

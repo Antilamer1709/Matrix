@@ -10,6 +10,7 @@ export class TopicDTO {
 export class EvidenceDTO {
   id: number;
   topicId: number;
+  userId: number;
   evidence: string;
   source: string;
   credibility: string;

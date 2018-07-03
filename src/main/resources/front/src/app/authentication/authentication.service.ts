@@ -12,8 +12,8 @@ export class AuthenticationService extends CommonService {
 
   public loggedUser: UserDTO;
 
-  constructor(private http: HttpClient, router: Router) {
-    super(router)
+  constructor(private http: HttpClient) {
+    super()
   }
 
   logout(): Observable<any> {

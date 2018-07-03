@@ -16,6 +16,9 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
             if (filter.getTopicId() != null)
                 params.put("topicId", filter.getTopicId());
 
+            if (filter.getUserId() != null)
+                params.put("userId", filter.getUserId());
+
             if (filter.getId() != null)
                 params.put("id", filter.getId());
 
@@ -43,7 +46,13 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
     protected String getSearchWhereStatement(EvidenceDTO filter) {
         StringBuilder whereStatementBuilder = new StringBuilder();
 
-        whereStatementBuilder.append(" AND topic.id = :topicId ");
+        if (filter.getTopicId() != null) {
+            whereStatementBuilder.append(" AND topic.id = :topicId ");
+        }
+
+        if (filter.getUserId() != null) {
+            whereStatementBuilder.append(" AND user.id = :userId ");
+        }
 
         if (filter.getId() != null)
             whereStatementBuilder.append(" AND  U.id = :id ");
@@ -74,23 +83,23 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
 
     @Override
     protected String getJoinForFetchStatement(EvidenceDTO filter) {
-        StringBuilder join = new StringBuilder();
-        join.append(" LEFT JOIN U.topic topic");
-
-        if(filter.getHypotheses() != null && filter.getHypotheses().size() > 0) {
-            join.append(" LEFT JOIN U.evidenceHypotheses evidenceHypotheses");
-        }
-
-        return join.toString();
+        return getJoinForCountStatement(filter);
     }
 
     @Override
     protected String getJoinForCountStatement(EvidenceDTO filter) {
         StringBuilder join = new StringBuilder();
-        join.append(" LEFT JOIN U.topic topic");
+
+        if (filter.getTopicId() != null) {
+            join.append(" LEFT JOIN U.topic topic ");
+        }
+
+        if (filter.getUserId() != null) {
+            join.append(" LEFT JOIN U.user user ");
+        }
 
         if(filter.getHypotheses() != null && filter.getHypotheses().size() > 0) {
-            join.append(" LEFT JOIN U.evidenceHypotheses evidenceHypotheses");
+            join.append(" LEFT JOIN U.evidenceHypotheses evidenceHypotheses ");
         }
 
         return join.toString();

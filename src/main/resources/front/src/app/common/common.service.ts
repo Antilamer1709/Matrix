@@ -1,9 +1,10 @@
-import {Router} from "@angular/router/router";
 import {HttpHeaders} from "@angular/common/http";
+import {SearchDTO} from "./common-model";
+import {LazyLoadEvent} from "primeng/api";
 
 export class CommonService {
 
-  constructor(protected router: Router) {
+  constructor() {
   }
 
   protected getEncodedHeaders(): HttpHeaders {
@@ -20,6 +21,16 @@ export class CommonService {
         'Cache-Control': 'no-cache'
       }
     );
+  }
+
+  protected createCommonSearchDTO<T>(event: LazyLoadEvent): SearchDTO<T> {
+    let searchDTO = new SearchDTO<T>();
+    searchDTO.first = event.first;
+    searchDTO.rows = event.rows;
+    searchDTO.sortField = event.sortField;
+    searchDTO.sortOrder = event.sortOrder;
+
+    return searchDTO;
   }
 
 }

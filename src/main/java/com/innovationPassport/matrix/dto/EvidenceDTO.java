@@ -15,6 +15,8 @@ public class EvidenceDTO {
 
     private Integer topicId;
 
+    private Integer userId;
+
     private String evidence;
 
     private String source;

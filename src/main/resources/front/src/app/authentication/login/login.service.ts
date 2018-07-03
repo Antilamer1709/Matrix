@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {CommonService} from "../../common/common.service";
-import {Router} from "@angular/router";
 import {UserDTO} from "../authentication-model";
 import {Observable} from "rxjs/internal/Observable";
 import {HttpClient} from "@angular/common/http";
@@ -8,8 +7,8 @@ import {HttpClient} from "@angular/common/http";
 @Injectable()
 export class LoginService extends CommonService {
 
-  constructor(private http: HttpClient, router: Router) {
-    super(router)
+  constructor(private http: HttpClient) {
+    super()
   }
 
   authenticate(login: UserDTO): Observable<any> {
