@@ -29,6 +29,7 @@ export class UserProfileComponent extends CommonComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initDicts();
     this.initRouteParams();
     this.initColumns();
   }

@@ -37,7 +37,7 @@
         <ng-template pTemplate="body" let-rowData let-columns="columns">
 
           <tr [pSelectableRow]="rowData">
-            <td *ngFor="let col of columns">
+            <td *ngFor="let col of columns" [ngClass]="getColorStyle(rowData, col)">
               {{rowData[col.field]}}
             </td>
           </tr>
