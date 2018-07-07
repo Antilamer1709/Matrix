@@ -3,6 +3,7 @@ package com.innovationPassport.matrix.service;
 import com.innovationPassport.matrix.dto.RegistrationDTO;
 import com.innovationPassport.matrix.dto.UserDTO;
 import com.innovationPassport.matrix.enums.UserRole;
+import com.innovationPassport.matrix.exception.UnauthorizedException;
 import com.innovationPassport.matrix.exception.ValidationException;
 import com.innovationPassport.matrix.model.RoleEntity;
 import com.innovationPassport.matrix.model.UserEntity;
@@ -89,4 +90,17 @@ public class AuthenticationBO {
         }
     }
 
+    @Transactional
+    public void checkUserAccess(UserEntity user) throws UnauthorizedException {
+        UserEntity loggedUser = getLoggedUser();
+        if (user == null) {
+            throw new UnauthorizedException("There is no such user in database!");
+        }
+        if (!loggedUser.getId().equals(user.getId())) {
+            boolean isAdmin = loggedUser.getRoles().stream().anyMatch(x -> x.getCode().equals(UserRole.ADMIN.getValue()));
+            if (!isAdmin) {
+                throw new UnauthorizedException("Permission denied!");
+            }
+        }
+    }
 }

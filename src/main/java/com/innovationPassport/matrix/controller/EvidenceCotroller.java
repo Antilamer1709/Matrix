@@ -5,6 +5,7 @@ import com.innovationPassport.matrix.dto.EvidenceDTO;
 import com.innovationPassport.matrix.dto.SearchDTO;
 import com.innovationPassport.matrix.dto.TopicDTO;
 import com.innovationPassport.matrix.dto.response.ResponseDTO;
+import com.innovationPassport.matrix.exception.UnauthorizedException;
 import com.innovationPassport.matrix.exception.ValidationException;
 import com.innovationPassport.matrix.service.EvidenceBO;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +42,7 @@ public class EvidenceCotroller {
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @PostMapping(value = "/edit")
     @ResponseStatus(value = HttpStatus.OK)
-    public void edit(@RequestBody EvidenceDTO evidenceDTO) {
+    public void edit(@RequestBody EvidenceDTO evidenceDTO) throws UnauthorizedException {
         log.debug("*** edit() evidenceDTO: " + evidenceDTO);
         evidenceBO.edit(evidenceDTO);
     }
@@ -69,7 +70,7 @@ public class EvidenceCotroller {
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @PostMapping(value = "/deleteComment")
     @ResponseStatus(value = HttpStatus.OK)
-    public void deleteComment(@RequestBody EvidenceCommentDTO commentDTO) throws ValidationException {
+    public void deleteComment(@RequestBody EvidenceCommentDTO commentDTO) throws ValidationException, UnauthorizedException {
         log.debug("*** deleteComment() commentDTO: " + commentDTO);
         evidenceBO.deleteComment(commentDTO);
     }

@@ -5,6 +5,7 @@ import com.innovationPassport.matrix.dto.EvidenceDTO;
 import com.innovationPassport.matrix.dto.SearchDTO;
 import com.innovationPassport.matrix.dto.UserDTO;
 import com.innovationPassport.matrix.dto.response.ResponseDTO;
+import com.innovationPassport.matrix.exception.UnauthorizedException;
 import com.innovationPassport.matrix.exception.ValidationException;
 import com.innovationPassport.matrix.model.*;
 import com.innovationPassport.matrix.repository.EvidenceCommentRepo;
@@ -83,9 +84,10 @@ public class EvidenceBO {
     }
 
     @Transactional
-    public void edit(EvidenceDTO evidenceDTO) {
+    public void edit(EvidenceDTO evidenceDTO) throws UnauthorizedException {
         EvidenceEntity evidenceEntity = evidenceRepo.findOne(evidenceDTO.getId());
         initEvidenceEntity(evidenceEntity, evidenceDTO);
+        authenticationBO.checkUserAccess(evidenceEntity.getUser());
         evidenceRepo.save(evidenceEntity);
         deleteOldHypotheseValues(evidenceEntity);
         createHypotheseValues(evidenceEntity, evidenceDTO);
@@ -143,16 +145,17 @@ public class EvidenceBO {
     }
 
     @Transactional
-    public void deleteComment(EvidenceCommentDTO commentDTO) throws ValidationException {
+    public void deleteComment(EvidenceCommentDTO commentDTO) throws ValidationException, UnauthorizedException {
         EvidenceCommentEntity commentEntity = evidenceCommentRepo.findOne(commentDTO.getId());
         validateDeleteComment(commentEntity);
 
         evidenceCommentRepo.delete(commentEntity);
     }
 
-    private void validateDeleteComment(EvidenceCommentEntity commentEntity) throws ValidationException {
+    private void validateDeleteComment(EvidenceCommentEntity commentEntity) throws ValidationException, UnauthorizedException {
         if (commentEntity == null) {
             throw new ValidationException("There is no such comment in database!");
         }
+        authenticationBO.checkUserAccess(commentEntity.getUser());
     }
 }
