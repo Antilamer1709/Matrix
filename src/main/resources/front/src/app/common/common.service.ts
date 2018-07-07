@@ -27,8 +27,12 @@ export class CommonService {
     let searchDTO = new SearchDTO<T>();
     searchDTO.first = event.first;
     searchDTO.rows = event.rows;
-    searchDTO.sortField = event.sortField;
-    searchDTO.sortOrder = event.sortOrder;
+
+    // sortField is string in primeng lib, therefore used comparation  whith != 'false'
+    if (event.sortField && event.sortField.toString() != 'false') {
+      searchDTO.sortField = event.sortField;
+      searchDTO.sortOrder = event.sortOrder;
+    }
 
     return searchDTO;
   }
