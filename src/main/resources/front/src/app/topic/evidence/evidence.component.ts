@@ -154,4 +154,17 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
     });
   }
 
+  public showDeleteComment(commnet: EvidenceCommentDTO): boolean {
+    if (this.authenticationService.loggedUser) {
+      if (this.authenticationService.loggedUser.id === commnet.user.id) {
+        return true;
+      }
+      if (this.authenticationService.hasAdminRole()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
 }

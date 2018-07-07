@@ -181,6 +181,7 @@ body {
   text-align: left;
   margin-bottom: 10px;
   box-shadow: 0 0 1px rgba(0,0,0,0.5);
+  min-height: 32px;
 }
 
 .addComment {
@@ -256,6 +257,9 @@ body {
   background-color: #d6d4d4 !important;
 }
 
+.profileLink {
+  float: left;
+}
 a.profileLink {
   color: #1e1e21;
 }
@@ -264,4 +268,8 @@ a:hover.profileLink {
   text-decoration: none;
 }
 a:visited.profileLink {
+}
+
+.deleteComment {
+  float: right;
 }

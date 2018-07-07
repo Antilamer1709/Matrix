@@ -86,6 +86,10 @@
           <a routerLink="/user/{{comment.user.id}}" class="profileLink">
             <h6 style="margin: 0">{{comment.user.firstName + " " + comment.user.lastName + " (" + comment.user.username + ")"}}</h6>
           </a>
+
+          <div *ngIf="showDeleteComment(comment)" class="deleteComment">
+            <span class="fa fa-trash-o" style="font-size: 22px"></span>
+          </div>
         </div>
 
         <div [innerHTML]="comment.comment" class="commentText"></div>
