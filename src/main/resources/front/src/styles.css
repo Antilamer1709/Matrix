@@ -272,4 +272,8 @@ a:visited.profileLink {
 
 .deleteComment {
   float: right;
+  cursor: pointer;
+}
+.deleteComment:hover {
+  color: #1f7db7;
 }
