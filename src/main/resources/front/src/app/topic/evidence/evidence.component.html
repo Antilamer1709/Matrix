@@ -87,7 +87,7 @@
             <h6 style="margin: 0">{{comment.user.firstName + " " + comment.user.lastName + " (" + comment.user.username + ")"}}</h6>
           </a>
 
-          <div *ngIf="showDeleteComment(comment)" class="deleteComment">
+          <div *ngIf="showDeleteComment(comment)" class="deleteComment" (click)="deleteComment(comment)">
             <span class="fa fa-trash-o" style="font-size: 22px"></span>
           </div>
         </div>

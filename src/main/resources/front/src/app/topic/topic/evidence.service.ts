@@ -63,6 +63,10 @@ export class EvidenceService extends CommonService {
     return this.http.post('/api/evidence/addComment', commentDTO);
   }
 
+  deleteComment(commentDTO: EvidenceCommentDTO): Observable<any> {
+    return this.http.post('/api/evidence/deleteComment', commentDTO);
+  }
+
   searchComments(evidenceId: number, event: LazyLoadEvent): Observable<ResponseDTO<EvidenceCommentDTO[]>> {
     let searchDTO = this.createSearchCommentDTO(evidenceId, event);
     return this.http.post<ResponseDTO<EvidenceCommentDTO[]>>('/api/evidence/searchComments', searchDTO);

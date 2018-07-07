@@ -6,7 +6,7 @@ import {TopicService} from "../topic.service";
 import {EvidenceService} from "../topic/evidence.service";
 import {EvidenceCommentDTO, EvidenceDTO, TopicDTO} from "../topic-model";
 import {CommonComponent} from "../../common/common-component";
-import {SelectItem} from "primeng/api";
+import {ConfirmationService, SelectItem} from "primeng/api";
 import {MessageService} from "primeng/components/common/messageservice";
 import {v} from "@angular/core/src/render3";
 import {AppService} from "../../app.service";
@@ -34,7 +34,8 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
               private evidenceService: EvidenceService,
               private appService: AppService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private confirmationService: ConfirmationService) {
     super();
   }
 
@@ -165,6 +166,23 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
     }
 
     return false;
+  }
+
+  public deleteComment(commnet: EvidenceCommentDTO): void {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to delete the comment?',
+      header: 'Delete comment',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.evidenceService.deleteComment(commnet).subscribe(
+          (res) => {
+            console.log(res);
+            this.initComments();
+            this.messageService.add({severity:'info', summary:'Success', detail:'Comment has been deleted!'});
+          }
+        );
+      }
+    });
   }
 
 }

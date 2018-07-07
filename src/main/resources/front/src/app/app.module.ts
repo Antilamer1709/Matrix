@@ -14,6 +14,8 @@ import {BlockUIModule} from "primeng/blockui";
 import {MenubarModule} from "primeng/menubar";
 import {ButtonModule} from "primeng/button";
 import {UserProfileModule} from "./user-profile/user-profile.module";
+import {ConfirmDialogModule} from 'primeng/components/confirmdialog/confirmdialog';
+import {ConfirmationService} from "primeng/api";
 
 @NgModule({
   declarations: [
@@ -29,10 +31,12 @@ import {UserProfileModule} from "./user-profile/user-profile.module";
     BlockUIModule,
     MenubarModule,
     ButtonModule,
-    UserProfileModule
+    UserProfileModule,
+    ConfirmDialogModule
   ],
   providers: [
     MessageService,
+    ConfirmationService,
     {provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })

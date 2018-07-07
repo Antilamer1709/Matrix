@@ -142,4 +142,17 @@ public class EvidenceBO {
         return commentDTO;
     }
 
+    @Transactional
+    public void deleteComment(EvidenceCommentDTO commentDTO) throws ValidationException {
+        EvidenceCommentEntity commentEntity = evidenceCommentRepo.findOne(commentDTO.getId());
+        validateDeleteComment(commentEntity);
+
+        evidenceCommentRepo.delete(commentEntity);
+    }
+
+    private void validateDeleteComment(EvidenceCommentEntity commentEntity) throws ValidationException {
+        if (commentEntity == null) {
+            throw new ValidationException("There is no such comment in database!");
+        }
+    }
 }

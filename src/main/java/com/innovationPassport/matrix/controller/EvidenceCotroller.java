@@ -66,4 +66,12 @@ public class EvidenceCotroller {
         evidenceBO.addComment(commentDTO);
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    @PostMapping(value = "/deleteComment")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void deleteComment(@RequestBody EvidenceCommentDTO commentDTO) throws ValidationException {
+        log.debug("*** deleteComment() commentDTO: " + commentDTO);
+        evidenceBO.deleteComment(commentDTO);
+    }
+
 }
