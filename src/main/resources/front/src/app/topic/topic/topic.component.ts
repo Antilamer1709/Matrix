@@ -2,10 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {EvidenceDTO, TopicDTO} from "../topic-model";
 import {TopicService} from "../topic.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {LazyLoadEvent, SelectItem} from "primeng/api";
+import {LazyLoadEvent} from "primeng/api";
 import {EvidenceService} from "./evidence.service";
 import {CommonComponent} from "../../common/common-component";
-import {v} from "@angular/core/src/render3";
 
 @Component({
   selector: 'app-topic',
@@ -44,7 +43,7 @@ export class TopicComponent extends CommonComponent implements OnInit {
   }
 
   private initTopic(): void {
-    this.topicService.getTopic(this.topicId).subscribe( res => {
+    this.topicService.getTopic(this.topicId).subscribe(res => {
       this.topic = res;
       this.addHypotheseColumns();
     })
@@ -72,7 +71,7 @@ export class TopicComponent extends CommonComponent implements OnInit {
   }
 
   private addHypotheseColumns(): void {
-    for (let i = 0; i < this.topic.hypotheses.length ; i++) {
+    for (let i = 0; i < this.topic.hypotheses.length; i++) {
       //for hypothese fields used indexes from topic.hypotheses array
       this.cols.push({field: i, header: 'Hypothese ' + (i + 1)})
     }
@@ -107,9 +106,9 @@ export class TopicComponent extends CommonComponent implements OnInit {
 
   private initColumns(): void {
     this.cols = [
-      { field: 'evidence', header: 'Evidence' },
-      { field: 'source', header: 'Source' },
-      { field: 'credibility', header: 'Credibility' }
+      {field: 'evidence', header: 'Evidence'},
+      {field: 'source', header: 'Source'},
+      {field: 'credibility', header: 'Credibility'}
     ];
   }
 
