@@ -86,6 +86,39 @@
 
 
 			<plugin>
+				<groupId>cz.habarta.typescript-generator</groupId>
+				<artifactId>typescript-generator-maven-plugin</artifactId>
+				<version>1.30.383</version>
+				<executions>
+					<execution>
+						<id>generate</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<phase>compile</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<jsonLibrary>jackson2</jsonLibrary>
+					<mapClasses>asClasses</mapClasses>
+					<!--<classPatterns>-->
+						<!--<pattern>com.innovationPassport.matrix.dto.**</pattern>-->
+					<!--</classPatterns>-->
+					<!--<classes>-->
+						<!--<class>com.innovationPassport.matrix.dto.Book</class>-->
+					<!--</classes>-->
+					<customTypeMappings>
+						<mapping>java.util.Date:Date</mapping>
+					</customTypeMappings>
+					<outputFile>src/main/resources/front/src/dto.ts</outputFile>
+					<outputFileType>implementationFile</outputFileType>
+					<outputKind>module</outputKind>
+					<mapEnum>asNumberBasedEnum</mapEnum>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>${frontend-maven-plugin.version}</version>
