@@ -14,7 +14,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,6 +52,46 @@ public class UserBO {
         EvidenceDTO evidenceDTO = new EvidenceDTO(entity);
         evidenceDTO.setTopicId(entity.getTopic().getId());
         return evidenceDTO;
+    }
+
+    private void chceckForDuplicates(List<UserDTO> users) {
+        long distinctCount = users.stream().filter(distinctByFullName()).count();
+
+        if (distinctCount < users.size()) {
+            throw new RuntimeException();
+        }
+    }
+
+    private Predicate<UserDTO> distinctByFullName() {
+        Set<UniqueUser> seen = new HashSet<>();
+        return x -> seen.add(new UniqueUser(x));
+    }
+
+
+
+    private class UniqueUser {
+
+        private String firsName;
+        private String lastName;
+
+        UniqueUser(UserDTO userDTO) {
+            this.firsName = userDTO.getFirstName();
+            this.lastName = userDTO.getLastName();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            UniqueUser that = (UniqueUser) o;
+            return Objects.equals(firsName, that.firsName) &&
+                    Objects.equals(lastName, that.lastName);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(firsName, lastName);
+        }
     }
 
 }
