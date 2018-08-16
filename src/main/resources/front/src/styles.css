@@ -10,6 +10,10 @@ body {
   height: 100%;
 }
 
+th {
+  text-align: center !important;
+}
+
 .authenticationDiv {
   display: inline-block;
   position: fixed;
