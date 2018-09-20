@@ -61,6 +61,8 @@
         <div style="float: right;">
           <button *ngIf="!disabled" pButton label="Save" icon="fa fa-paper-plane" type="submit"></button>
           <button *ngIf="isEditButtonVisible()" (click)="onEditClick()" pButton label="Edit" icon="fa fa-paper-plane"
+                  type="button" style="margin-right: 15px"></button>
+          <button *ngIf="isEditButtonVisible()" (click)="onDeleteClick()" pButton label="Delete" icon="fa fa-trash-o"
                   type="button"></button>
         </div>
 

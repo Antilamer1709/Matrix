@@ -55,6 +55,10 @@ export class EvidenceService extends CommonService {
     return this.http.post('/api/evidence/edit', evidence);
   }
 
+  public deleteEvidence(evidence: EvidenceDTO): Observable<any> {
+    return this.http.post('/api/evidence/delete', evidence);
+  }
+
   getEvidence(id: number): Observable<EvidenceDTO> {
     return this.http.get<EvidenceDTO>('/api/evidence/getEvidence/' + id);
   }

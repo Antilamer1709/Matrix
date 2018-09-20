@@ -47,6 +47,14 @@ public class EvidenceCotroller {
         evidenceBO.edit(evidenceDTO);
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    @PostMapping(value = "/delete")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void deleteEvidence(@RequestBody EvidenceDTO evidenceDTO) throws UnauthorizedException {
+        log.debug("*** deleteEvidence() evidenceDTO: " + evidenceDTO);
+        evidenceBO.deleteEvidence(evidenceDTO);
+    }
+
     @GetMapping(value = "/getEvidence/{id}")
     public EvidenceDTO getEvidence(@PathVariable Integer id) throws ValidationException {
         log.debug("*** getEvidence() id: " + id);

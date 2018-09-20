@@ -135,6 +135,19 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
     this.disabled = false;
   }
 
+  public onDeleteClick(): void {
+    this.appService.blockedUI = true;
+
+    this.evidenceService.deleteEvidence(this.evidence).subscribe(
+      (res) => {
+        console.log(res);
+        this.appService.blockedUI = false;
+        this.messageService.add({severity:'info', summary:'Success', detail: 'Evidence has been deleted!'});
+        this.router.navigate(['/topic/' + this.topicId]);
+      }
+    );
+  }
+
   private initComments(): void {
     if (this.evidenceId != 'new') {
       let event = {

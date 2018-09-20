@@ -98,6 +98,14 @@ public class EvidenceBO {
     }
 
     @Transactional
+    public void deleteEvidence(EvidenceDTO evidenceDTO) throws UnauthorizedException {
+        EvidenceEntity evidenceEntity = evidenceRepo.findOne(evidenceDTO.getId());
+        authenticationBO.checkUserAccess(evidenceEntity.getUser());
+        deleteOldHypotheseValues(evidenceEntity);
+        evidenceRepo.delete(evidenceEntity);
+    }
+
+    @Transactional
     public EvidenceDTO getEvidence(Integer id) throws ValidationException {
         EvidenceEntity evidenceEntity = evidenceRepo.findOne(id);
 
