@@ -129,6 +129,9 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
       && this.evidence.creator.id === this.authenticationService.loggedUser.id) {
       return true;
     }
+    if (this.authenticationService.hasAdminRole()) {
+      return true;
+    }
   }
 
   public onEditClick(): void {
