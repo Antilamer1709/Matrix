@@ -103,6 +103,7 @@ export class EvidenceComponent extends CommonComponent implements OnInit {
         (res) => {
           console.log(res);
           this.initEvidence();
+          this.initComments();
           this.messageService.add({severity:'info', summary:'Success', detail:'Comment has been added!'});
         }
       );
