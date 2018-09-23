@@ -12,8 +12,7 @@ export class TopicListComponent implements OnInit {
 
   topics: TopicDTO[];
 
-  constructor(private topicService: TopicService,
-              private router: Router) { }
+  constructor(private topicService: TopicService) { }
 
   ngOnInit() {
     this.initTopics();
@@ -23,10 +22,6 @@ export class TopicListComponent implements OnInit {
     this.topicService.getAllTopics().subscribe(res => {
       this.topics = res;
     });
-  }
-
-  public onTopicClick(topic: TopicDTO): void {
-    this.router.navigate(['/topic/' + topic.id]);
   }
 
 }

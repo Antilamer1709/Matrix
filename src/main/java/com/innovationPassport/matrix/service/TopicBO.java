@@ -59,4 +59,11 @@ public class TopicBO {
 
         return topicDTO;
     }
+
+    @Transactional
+    public void delete(TopicDTO topicDTO) {
+        TopicEntity topicEntity = topicRepo.findOne(topicDTO.getId());
+
+        topicRepo.delete(topicEntity);
+    }
 }

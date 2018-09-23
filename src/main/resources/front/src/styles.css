@@ -85,6 +85,7 @@ th {
 
   font-size: 26px;
   text-align: center;
+  position: relative;
 }
 
 .topicCard:hover {
@@ -289,4 +290,10 @@ a:visited.profileLink {
   background-color: #F7F7F9;
   text-align: right;
   padding-right: 20px;
+}
+
+.deleteTopic {
+  position: absolute;
+  bottom: 10px;
+  right: 25px;
 }

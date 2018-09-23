@@ -40,4 +40,12 @@ public class TopicController {
         topicBO.create(topicDTO);
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_SUPER_ADMIN"})
+    @PostMapping(value = "/delete")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void delete(@RequestBody TopicDTO topicDTO) {
+        log.debug("*** delete() topicDTO: " + topicDTO);
+        topicBO.delete(topicDTO);
+    }
+
 }

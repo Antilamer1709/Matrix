@@ -1,3 +1,11 @@
-<div class="topicCard">
+<div class="topicCard" (click)="onTopicClick(topic)">
   {{topic.name}}
+
+  <div class="deleteTopic">
+    <button *ngIf="isDeleteButtonVisible()"
+            (click)="onDeleteClick(topic)"
+            pButton label="Delete" icon="fa fa-trash-o"
+            type="button">
+    </button>
+  </div>
 </div>
