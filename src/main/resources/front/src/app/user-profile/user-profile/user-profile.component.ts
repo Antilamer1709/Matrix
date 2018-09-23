@@ -66,6 +66,7 @@ export class UserProfileComponent extends CommonComponent implements OnInit {
 
   private initColumns(): void {
     this.cols = [
+      { field: 'topicName', header: 'Topic' },
       { field: 'evidence', header: 'Evidence' },
       { field: 'source', header: 'Source' },
       { field: 'credibility', header: 'Credibility' }

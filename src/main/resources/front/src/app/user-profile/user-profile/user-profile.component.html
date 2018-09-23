@@ -26,6 +26,7 @@
 
           <tr>
             <th *ngFor="let col of columns" [ngSwitch]="col.field">
+              <input *ngSwitchCase="'topicName'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
               <input *ngSwitchCase="'evidence'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
               <input *ngSwitchCase="'source'" style="width: 100%" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
               <p-dropdown *ngSwitchCase="'credibility'" [options]="credibilityOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, col.filterMatchMode)"></p-dropdown>

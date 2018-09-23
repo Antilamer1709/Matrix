@@ -51,6 +51,7 @@ public class UserBO {
     private EvidenceDTO createEvidenceDTO(EvidenceEntity entity) {
         EvidenceDTO evidenceDTO = new EvidenceDTO(entity);
         evidenceDTO.setTopicId(entity.getTopic().getId());
+        evidenceDTO.setTopicName(entity.getTopic().getName());
         return evidenceDTO;
     }
 

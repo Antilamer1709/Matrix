@@ -16,6 +16,9 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
             if (filter.getTopicId() != null)
                 params.put("topicId", filter.getTopicId());
 
+            if (filter.getTopicName() != null)
+                params.put("topicName", filter.getTopicName());
+
             if (filter.getUserId() != null)
                 params.put("userId", filter.getUserId());
 
@@ -50,6 +53,10 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
             whereStatementBuilder.append(" AND topic.id = :topicId ");
         } else {
             whereStatementBuilder.append(" AND NOT (topic.id is null) ");
+        }
+
+        if (filter.getTopicName() != null) {
+            whereStatementBuilder.append(" AND LOWER(LTRIM(topic.name)) LIKE LOWER(CONCAT(:topicName, '%')) ");
         }
 
         if (filter.getUserId() != null) {
@@ -110,6 +117,8 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
     protected String makeOrderByProperty(Sort.Order order, EvidenceDTO filter) {
         if (order.getProperty().equalsIgnoreCase("credibility")) {
             return "U." + order.getProperty() + " " + (order.getDirection().name().equalsIgnoreCase("asc") ? "desc" : "asc");
+        } else if (order.getProperty().equalsIgnoreCase("topicName")) {
+            return "topic.name " + order.getDirection().name();
         } else {
             return "U." + order.getProperty() + " " + order.getDirection().name();
         }
