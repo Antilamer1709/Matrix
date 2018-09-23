@@ -32,8 +32,8 @@
       <a routerLink="login" class="dashboardLink" *ngIf="!authenticationService.loggedUser">
         <button pButton label="Log in" icon="fa fa-sign-in" type="button"></button>
       </a>
-      <a routerLink="registration" *ngIf="!authenticationService.loggedUser" class="dashboardLink">
-        <button pButton label="Registration" icon="fa fa-user-plus" type="button"></button>
+      <a routerLink="registration" *ngIf="authenticationService.hasAdminRole()" class="dashboardLink">
+        <button pButton label="Add new user" icon="fa fa-user-plus" type="button"></button>
       </a>
     </div>
 
