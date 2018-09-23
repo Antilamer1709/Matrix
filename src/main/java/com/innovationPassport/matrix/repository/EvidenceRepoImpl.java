@@ -48,6 +48,8 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
 
         if (filter.getTopicId() != null) {
             whereStatementBuilder.append(" AND topic.id = :topicId ");
+        } else {
+            whereStatementBuilder.append(" AND NOT (topic.id is null) ");
         }
 
         if (filter.getUserId() != null) {
@@ -90,9 +92,7 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
     protected String getJoinForCountStatement(EvidenceDTO filter) {
         StringBuilder join = new StringBuilder();
 
-        if (filter.getTopicId() != null) {
-            join.append(" LEFT JOIN U.topic topic ");
-        }
+        join.append(" LEFT JOIN U.topic topic ");
 
         if (filter.getUserId() != null) {
             join.append(" LEFT JOIN U.user user ");
