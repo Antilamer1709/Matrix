@@ -108,7 +108,11 @@ public class EvidenceRepoImpl extends AbstractPagedRepoImpl<EvidenceEntity, Evid
 
     @Override
     protected String makeOrderByProperty(Sort.Order order, EvidenceDTO filter) {
-        return "U." + order.getProperty() + " " + order.getDirection().name();
+        if (order.getProperty().equalsIgnoreCase("credibility")) {
+            return "U." + order.getProperty() + " " + (order.getDirection().name().equalsIgnoreCase("asc") ? "desc" : "asc");
+        } else {
+            return "U." + order.getProperty() + " " + order.getDirection().name();
+        }
     }
 
 }
