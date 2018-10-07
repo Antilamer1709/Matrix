@@ -5,9 +5,9 @@
 <div>
   <p-menubar>
 
-    <a routerLink="topic" class="dashboardLink" style="float:left">
-      <img src="assets/images/forum.png" class="forumImage">
-    </a>
+    <!--<a routerLink="topic" class="dashboardLink" style="float:left">-->
+      <!--<img src="assets/images/forum.png" class="forumImage">-->
+    <!--</a>-->
 
     <a routerLink="/user/{{authenticationService.loggedUser.id}}" [routerLinkActive]="'activeLink'"
        class="btn btn-default menuLink" *ngIf="authenticationService.loggedUser">
