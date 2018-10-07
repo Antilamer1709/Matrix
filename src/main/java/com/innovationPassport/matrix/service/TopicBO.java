@@ -32,6 +32,7 @@ public class TopicBO {
     public void create(TopicDTO topicDTO) {
         TopicEntity topicEntity = new TopicEntity();
         topicEntity.setName(topicDTO.getName());
+        topicEntity.setDescription(topicDTO.getDescription());
 
         topicRepo.save(topicEntity);
         createHypotheses(topicDTO, topicEntity);

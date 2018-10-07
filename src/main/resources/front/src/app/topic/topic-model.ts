@@ -3,6 +3,7 @@ import {UserDTO} from "../authentication/authentication-model";
 export class TopicDTO {
   id: number;
   name: string;
+  description: string;
   evidences: EvidenceDTO[];
   hypotheses: string[];
 }

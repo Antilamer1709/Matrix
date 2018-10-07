@@ -1,4 +1,8 @@
 <div class="evidenceTableContainer">
+  {{topic.description}}
+</div>
+
+<div class="evidenceTableContainer">
 
   <p-table #dt [columns]="cols" [value]="data" [lazy]="true" (onLazyLoad)="loadEvidences($event)" [paginator]="true"
            [rows]="15" [totalRecords]="totalRecords" [loading]="loading" [customSort]="true"

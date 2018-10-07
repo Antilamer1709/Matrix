@@ -12,6 +12,8 @@ public class TopicDTO {
 
     private String name;
 
+    private String description;
+
     private List<String> hypotheses;
 
 
@@ -22,5 +24,6 @@ public class TopicDTO {
     public TopicDTO(TopicEntity entity) {
         this.id = entity.getId();
         this.name = entity.getName();
+        this.description = entity.getDescription();
     }
 }

@@ -20,6 +20,19 @@
 
       </div>
 
+      <div class="flexCenter">
+
+        <div class="marginBottom25">
+          <span class="ui-float-label">
+            <textarea [required]="true" pInputTextarea class="topicNameTextArea" [(ngModel)]="topic.description"
+                      id="description" name="description">
+            </textarea>
+            <label class="topicNameLabel" for="description">Topic description</label>
+          </span>
+        </div>
+
+      </div>
+
       <div class="row flexCenter">
 
         <div *ngFor="let hypothese of topic.hypotheses; trackBy: trackByFn; let i = index">
