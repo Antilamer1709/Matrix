@@ -12,7 +12,7 @@
         <div class="marginBottom25">
           <span class="ui-float-label">
             <textarea [required]="true" pInputTextarea class="topicNameTextArea" [(ngModel)]="topic.name"
-                      id="name" name="name">
+                      id="name" name="name" maxlength="500">
             </textarea>
             <label class="topicNameLabel" for="name">Topic name</label>
           </span>
@@ -25,7 +25,7 @@
         <div class="marginBottom25">
           <span class="ui-float-label">
             <textarea [required]="true" pInputTextarea class="topicNameTextArea" [(ngModel)]="topic.description"
-                      id="description" name="description">
+                      id="description" name="description" maxlength="1200">
             </textarea>
             <label class="topicNameLabel" for="description">Topic description</label>
           </span>
@@ -39,7 +39,8 @@
           <div class="form-group marginBottom25">
 
           <span class="ui-float-label">
-            <input [(ngModel)]="topic.hypotheses[i]" [required]="true" id="hypothese{{i}}" name="hypothese{{i}}" type="text" size="30" pInputText>
+            <input [(ngModel)]="topic.hypotheses[i]" [required]="true" id="hypothese{{i}}" name="hypothese{{i}}" type="text"
+                   maxlength="120" size="30" pInputText>
 
             <span (click)="addHypothese()" class="fa fa-plus hypothesesSpan"></span>
             <span (click)="removeHypothese(i)" class="fa fa-minus hypothesesSpan"></span>
