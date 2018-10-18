@@ -48,4 +48,12 @@ public class TopicController {
         topicBO.delete(topicDTO);
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_SUPER_ADMIN"})
+    @PostMapping(value = "/edit")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void edit(@RequestBody TopicDTO topicDTO) {
+        log.debug("*** edit() topicDTO: " + topicDTO);
+        topicBO.edit(topicDTO);
+    }
+
 }

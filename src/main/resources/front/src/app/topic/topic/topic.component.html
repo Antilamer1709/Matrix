@@ -1,5 +1,20 @@
 <div class="evidenceTableContainer">
-  {{topic.description}}
+  <div *ngIf="!edit">
+    {{topic.description}}
+  </div>
+  <div *ngIf="edit" style="width: 100%">
+    <textarea pInputTextarea class="topicNameWideTextArea" [(ngModel)]="topic.description"
+              id="description" name="description" maxlength="1200"></textarea>
+  </div>
+</div>
+
+<div *ngIf="authenticationService.hasAdminRole()" class="evidenceTableContainer">
+  <button *ngIf="edit" pButton label="Save" icon="fa fa-paper-plane" (click)="onSaveClick()"
+          style="margin-right: 15px"></button>
+  <button *ngIf="!edit" (click)="onEditToggle()" pButton label="Edit" icon="fa fa-paper-plane"
+          type="button" style="margin-right: 15px"></button>
+  <button *ngIf="edit" (click)="onEditToggle()" pButton label="Cancell" icon="fa fas fa-times"
+          type="button"></button>
 </div>
 
 <div class="evidenceTableContainer">

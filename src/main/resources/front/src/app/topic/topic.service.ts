@@ -22,6 +22,11 @@ export class TopicService {
     return this.http.post<void>('/api/topic/delete', topic);
   }
 
+
+  public editTopic(topic: TopicDTO): Observable<void> {
+    return this.http.post<void>('/api/topic/edit', topic);
+  }
+
   getTopic(id: number): Observable<TopicDTO> {
     return this.http.get<TopicDTO>('/api/topic/getTopic/' + id);
   }

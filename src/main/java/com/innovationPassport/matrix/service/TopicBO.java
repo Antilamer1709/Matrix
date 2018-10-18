@@ -67,4 +67,11 @@ public class TopicBO {
 
         topicRepo.delete(topicEntity);
     }
+
+    @Transactional
+    public void edit(TopicDTO topicDTO) {
+        TopicEntity topicEntity = topicRepo.findOne(topicDTO.getId());
+        topicEntity.setDescription(topicDTO.getDescription());
+        topicRepo.save(topicEntity);
+    }
 }

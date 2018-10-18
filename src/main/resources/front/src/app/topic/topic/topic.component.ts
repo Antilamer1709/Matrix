@@ -2,9 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {EvidenceDTO, TopicDTO} from "../topic-model";
 import {TopicService} from "../topic.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {LazyLoadEvent} from "primeng/api";
+import {LazyLoadEvent, MessageService} from "primeng/api";
 import {EvidenceService} from "./evidence.service";
 import {CommonComponent} from "../../common/common-component";
+import {AuthenticationService} from "../../authentication/authentication.service";
+import {AppService} from "../../app.service";
 
 @Component({
   selector: 'app-topic',
@@ -14,6 +16,7 @@ import {CommonComponent} from "../../common/common-component";
 export class TopicComponent extends CommonComponent implements OnInit {
 
   loading: boolean;
+  edit: boolean;
   totalRecords: number;
   cols: any[];
   data: EvidenceDTO[];
@@ -21,7 +24,10 @@ export class TopicComponent extends CommonComponent implements OnInit {
   topicId: number;
   topic: TopicDTO = new TopicDTO();
 
-  constructor(private topicService: TopicService,
+  constructor(public authenticationService: AuthenticationService,
+              private appService: AppService,
+              private messageService: MessageService,
+              private topicService: TopicService,
               private evidenceService: EvidenceService,
               private activatedRoute: ActivatedRoute,
               private router: Router) {
@@ -30,6 +36,7 @@ export class TopicComponent extends CommonComponent implements OnInit {
 
   ngOnInit() {
     this.loading = false;
+    this.edit = false;
     this.initDicts();
     this.initColumns();
     this.initTopicId();
@@ -102,6 +109,23 @@ export class TopicComponent extends CommonComponent implements OnInit {
 
   public addEvidence(): void {
     this.router.navigate(['topic/' + this.topicId + '/evidence/new']);
+  }
+
+  public onEditToggle(): void {
+    this.edit = !this.edit;
+  }
+
+  public onSaveClick(): void {
+    this.appService.blockedUI = true;
+
+    this.topicService.editTopic(this.topic).subscribe(
+      (res) => {
+        console.log(res);
+        this.appService.blockedUI = false;
+        this.edit = false;
+        this.messageService.add({severity:'info', summary:'Success', detail: 'Success!'});
+      }
+    );
   }
 
   private initColumns(): void {
